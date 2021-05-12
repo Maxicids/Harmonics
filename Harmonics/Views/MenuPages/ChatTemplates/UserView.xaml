@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Harmonics.Views.MenuPages.ChatTemplates.UserView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:Harmonics.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <viewModels:SelectedUserViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <converters:UserDateConverter x:Key="UserDateConverter" />
+        <converters:UserDescriptionConverter x:Key="UserDescriptionConverter" />
+    </UserControl.Resources>
+    <Grid Background="#0E0C1D">
+        <Button Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Click="CLose_OnClick">
+            <materialDesign:PackIcon Kind="CloseBold" Width="25" Height="25" Foreground="#ffc107"/>
+        </Button>
+        <Button Click="Report_OnClick" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
+                Background="{x:Null}" Margin="0,0,35,0" BorderBrush="{x:Null}" Width="35">
+            <materialDesign:PackIcon Kind="Report" Width="25" Height="25" Foreground="#ffc107"/>
+        </Button>
+        <StackPanel Name="MainPanel" VerticalAlignment="Top"  Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Border Margin="5,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="100" CornerRadius="100,100,100,100">
+                    <Border.Background>
+                        <ImageBrush x:Name="UserImage" Stretch="Fill" ImageSource="{Binding User[0].profile_Picture}"/>
+                    </Border.Background>
+                </Border>
+            </StackPanel>
+            <TextBlock Name="UserName" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding User[0].login}" ></TextBlock>
+            <TextBlock Name="UserDescription" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="28" FontFamily="Calibri" Foreground="#ffc107" Text="{Binding User[0].description, Converter='{StaticResource UserDescriptionConverter}'}" ></TextBlock>
+            <TextBlock Name="UserCreatedAt" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="28" FontFamily="Calibri" Foreground="#ffc107" Text="{Binding User[0].created_At.Date, Converter='{StaticResource UserDateConverter}'}" ></TextBlock>
+            <Grid Name="ReportGrid" Background="Aquamarine" Height="100"></Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

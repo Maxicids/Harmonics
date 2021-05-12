@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Harmonics.Views.MenuPages.ChatTemplates.ParticipantPreview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:Harmonics.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:StatusColorConverter x:Key="StatusColorConverter" />
+        <converters:DeleteFromChatButtonConverter x:Key="DeleteFromChatButtonConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel Orientation="Horizontal" Height="40" >
+            <TextBlock Visibility="Hidden" Name="Id" Text="{Binding Path=id}" FontSize="18" FontFamily="Calibri" Margin="0,0,0,0" ></TextBlock>
+            <Border Margin="-8,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="40" Height="40" CornerRadius="100,100,100,100">
+                <Border.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="{Binding profile_Picture}"/>
+                </Border.Background>
+                <Ellipse Margin="32, 32, 0,0" Fill="{Binding Path=is_Online, Converter={StaticResource StatusColorConverter}}" Width="7" Height="7" />
+            </Border>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="2,0,0,0" >
+                    <TextBlock HorizontalAlignment="Center" Text="{Binding Path=login}" FontSize="16" FontFamily="Calibri Bold" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Border Visibility="{Binding Path=id, Converter={StaticResource DeleteFromChatButtonConverter}}" HorizontalAlignment="Right" Width="40" Height="40" Background="#0d1521">
+            <materialDesign:PackIcon MouseDown="RemoveFromChat_OnMouseDown" Margin="0,0,17,0" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CloseBold" Foreground="#ffc107"/>
+        </Border>
+    </Grid>
+</UserControl>

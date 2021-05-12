@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Harmonics.Views.MenuPages.ChatTemplates.SelectedChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Harmonics.Views.MenuPages.ChatTemplates"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:converters="clr-namespace:Harmonics.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <converters:ChatSizeConverter x:Key="ChatSizeConverter" />
+        <converters:ParticipantsSizeConverter x:Key="ParticipantsSizeConverter" />
+    </UserControl.Resources>
+    <materialDesign:TransitioningContent x:Name="Product" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.4}">
+        <Grid Name="MainGrid">
+            <Grid VerticalAlignment="Top" ZIndex="1" Background="#242F3D" Height="40">
+                <materialDesign:PackIcon MouseDown="Back_OnMouseDown" Cursor="Hand" Margin="10,0,0,0" Kind="ArrowBack" Width="20" Height="20" Foreground="#ffc107" VerticalAlignment="Center"/>
+                <materialDesign:PackIcon Cursor="Hand" Margin="35,0,0,0" VerticalAlignment="Center" Kind="PlusBold" Width="20" Height="20" Foreground="#ffc107"/>
+            </Grid>
+            <StackPanel Width="{Binding Path=ActualWidth, ElementName=MainGrid}" Orientation="Horizontal">
+                <Grid Name="ChatTemplate">
+                    <local:Chat Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource ChatSizeConverter}}"/>
+                </Grid>
+                <Grid Name="ParticipantsTemplate">
+                    <local:Participants Width="{Binding Path=ActualWidth, ElementName=MainGrid, Converter={StaticResource ParticipantsSizeConverter}}"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </materialDesign:TransitioningContent>
+</UserControl>

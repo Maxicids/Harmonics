@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="Harmonics.Views.MenuPages.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <viewModels:SettingsViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="#0E0C1D">
+        <StackPanel VerticalAlignment="Top" Height="300" Orientation="Vertical">
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Border MouseDown="ChooseImage_OnMouseDown" Margin="5,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="100" CornerRadius="100,100,100,100">
+                    <Border.Background>
+                        <ImageBrush x:Name="Image" Stretch="Fill" ImageSource="{Binding User[0].profile_Picture}"/>
+                    </Border.Background>
+                    <!-- ../../../Properties/Images/Avatar1.jpg -->
+                </Border>
+            </StackPanel>
+            <TextBlock Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding User[0].login}" ></TextBlock>
+            <TextBox Name="TbDescription" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Description" Text="{Binding User[0].description}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+            <TextBox Name="TbTextSize" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Chat Text Size" Text="{Binding User[0].Setting.chat_font_size}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
+        </StackPanel>
+        <Button VerticalAlignment="Bottom" Click="ButtonBase_OnClick">Save</Button>
+    </Grid>
+</UserControl>

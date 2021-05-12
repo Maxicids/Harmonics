@@ -1,0 +1,6 @@
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\bin\Debug\Server.exe
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\bin\Debug\Server.pdb
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\obj\Debug\Server.csprojAssemblyReference.cache
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\obj\Debug\Server.exe
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Server\obj\Debug\Server.pdb

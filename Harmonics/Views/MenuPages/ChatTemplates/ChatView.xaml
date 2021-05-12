@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Harmonics.Views.MenuPages.ChatTemplates.ChatView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="500">
+    <Grid Name="MainGrid" Background="#A9020317" SizeChanged="MainGrid_OnSizeChanged">
+        <StackPanel Name="MainPanel" Orientation="Horizontal" Height="100" >
+            <TextBlock Visibility="Hidden" Name="Id" Text="{Binding Path=id}" FontSize="18" FontFamily="Calibri" Margin="10,0,0,0" ></TextBlock>
+            <Border Name="PhotoBorder" Margin="5,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Left" Width="80" Height="80" CornerRadius="100,100,100,100">
+                <Border.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="{Binding mainPicture}"/>
+                </Border.Background>
+            </Border>
+            <StackPanel Name="TextPanel" Orientation="Vertical" VerticalAlignment="Center">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="2,0,0,0" Height="24">
+                        <TextBlock Name="HeaderTextBlock" HorizontalAlignment="Center"  Height="20" Text="{Binding Path=title}" FontSize="18" FontFamily="Calibri Bold"  />
+                    </StackPanel>
+                    <TextBlock VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Name="Description" Height="71" HorizontalAlignment="Center" Text="{Binding Path=description}" FontSize="18" FontFamily="Calibri" Margin="10,0,0,0" ></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
