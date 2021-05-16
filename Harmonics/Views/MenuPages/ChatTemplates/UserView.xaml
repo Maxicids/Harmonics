@@ -8,19 +8,17 @@
              xmlns:converters="clr-namespace:Harmonics.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <viewModels:SelectedUserViewModel/>
-    </UserControl.DataContext>
     <UserControl.Resources>
         <converters:UserDateConverter x:Key="UserDateConverter" />
         <converters:UserDescriptionConverter x:Key="UserDescriptionConverter" />
+        <converters:BoolToVisibilityConverter x:Key="ReportVisibilityConverter"/>
     </UserControl.Resources>
-    <Grid Background="#0E0C1D">
-        <Button Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
-                Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Click="CLose_OnClick">
+    <Grid Width="{Binding ActualWidth}" Height="{Binding ActualHeight}" Background="#00000F">
+        <Button Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right" Command="{Binding CloseCommand}"
+                Background="{x:Null}" BorderBrush="{x:Null}" Width="35" >
             <materialDesign:PackIcon Kind="CloseBold" Width="25" Height="25" Foreground="#ffc107"/>
         </Button>
-        <Button Click="Report_OnClick" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
+        <Button Command="{Binding ShowReportContentCommand}" Padding="0" VerticalAlignment="Top" HorizontalAlignment="Right"
                 Background="{x:Null}" Margin="0,0,35,0" BorderBrush="{x:Null}" Width="35">
             <materialDesign:PackIcon Kind="Report" Width="25" Height="25" Foreground="#ffc107"/>
         </Button>
@@ -35,7 +33,13 @@
             <TextBlock Name="UserName" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding User[0].login}" ></TextBlock>
             <TextBlock Name="UserDescription" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="28" FontFamily="Calibri" Foreground="#ffc107" Text="{Binding User[0].description, Converter='{StaticResource UserDescriptionConverter}'}" ></TextBlock>
             <TextBlock Name="UserCreatedAt" Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="28" FontFamily="Calibri" Foreground="#ffc107" Text="{Binding User[0].created_At.Date, Converter='{StaticResource UserDateConverter}'}" ></TextBlock>
-            <Grid Name="ReportGrid" Background="Aquamarine" Height="100"></Grid>
         </StackPanel>
+        <Grid Visibility="{Binding ShowReportContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ReportVisibilityConverter}}" VerticalAlignment="Bottom" Name="ReportGrid" Height="115">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Foreground="AntiqueWhite" FontFamily="Calibri Bold" Height="15">Reason</TextBlock>
+                <TextBox Foreground="AntiqueWhite" Text="{Binding ReportContent}" TextWrapping="Wrap" Height="70"></TextBox>
+                <Button Command="{Binding ReportCommand}"  Height="30" >Report</Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

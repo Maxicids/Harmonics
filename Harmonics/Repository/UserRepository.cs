@@ -32,9 +32,7 @@ namespace Harmonics.Models.Repository
         {
             var user = messengerModel.Users.FirstOrDefault(x => x.login == login);
             if (user == null) return null;
-            return user;
-            //return PasswordHash.ValidatePassword(user.password, password) ? user : null;
-            //return messengerModel.Users.FirstOrDefault(x => x.login == login && PasswordHash.ValidatePassword(x.password, password));
+            return PasswordHash.ValidatePassword(password, user.password) ? user : null;
         }
         public IEnumerable<User> GetAllByChatId(int chatId)
         {

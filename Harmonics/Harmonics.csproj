@@ -15,6 +15,7 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,6 +37,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Apex, Version=1.5.0.0, Culture=neutral, PublicKeyToken=98d06957926c086d">
+      <HintPath>..\packages\Apex.1.5.0\lib\net40\Apex.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ControlzEx, Version=4.0.0.0, Culture=neutral, PublicKeyToken=69f1c32f803d307e">
       <HintPath>..\packages\ControlzEx.4.4.0\lib\net462\ControlzEx.dll</HintPath>
       <Private>True</Private>
@@ -95,12 +100,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Command\Command.cs" />
     <Compile Include="Converters\ChatSizeConverter.cs" />
     <Compile Include="Converters\DeleteFromChatButtonConverter.cs" />
     <Compile Include="Converters\IdToLoginConverter.cs" />
     <Compile Include="Converters\MessageAlignmentConverter.cs" />
     <Compile Include="Converters\MessageTextBoxSizeConverter.cs" />
     <Compile Include="Converters\ParticipantsSizeConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\ReasonIdToStringConverter.cs" />
     <Compile Include="Converters\StatusColorConverter.cs" />
     <Compile Include="Converters\UserDateConverter.cs" />
     <Compile Include="Converters\UserDescriptionConverter.cs" />
@@ -119,6 +127,8 @@
     <Compile Include="Repository\ChatsRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\MessageRepository.cs" />
+    <Compile Include="Repository\ParticipantRepository.cs" />
+    <Compile Include="Repository\ReportContentRepository.cs" />
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\SettingsRepository.cs" />
@@ -132,6 +142,7 @@
     <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\IResizeable.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MessagesViewModel.cs" />
     <Compile Include="ViewModels\NewChatViewModel.cs" />
     <Compile Include="ViewModels\ParticipantViewModel.cs" />

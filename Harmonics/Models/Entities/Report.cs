@@ -4,10 +4,9 @@ namespace Harmonics.Models.Entities
     {
         public int id { get; set; }
 
-        public int user_id { get; set; }
-
+        public int complainee { get; set; }
         public int sender_id { get; set; }
-
+        public bool is_Approved { get; set; }
         public int? reason { get; set; }
 
         public virtual ReportContent ReportContent { get; set; }

@@ -5,21 +5,21 @@ namespace Harmonics.ViewModels
 {
     public class ReportViewModel : ViewModel
     {
-        private ObservableCollection<Report> chatsCollection;
+        private ObservableCollection<Report> reportsCollection;
 
         public ObservableCollection<Report> Reports
         {
-            get => chatsCollection;
+            get => reportsCollection;
             set
             {
-                chatsCollection = value;
+                reportsCollection = value;
                 OnPropertyChanged($"collection");
             }
         }
 
         public ReportViewModel()
         {
-            chatsCollection = new ObservableCollection<Report>(unitOfWork.Reports.GetAll());
+            reportsCollection = new ObservableCollection<Report>(unitOfWork.Reports.GetAll());
         }
     }
 }

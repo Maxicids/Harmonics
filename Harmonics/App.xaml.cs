@@ -9,19 +9,20 @@ namespace Harmonics
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            using (var db = new UnitOfWork())
-            {
-                Current.Properties["UsersList"] = db.Users.GetAll().ToList();//TODO: admin
-                Current.Properties["ReportsList"] = db.Reports.GetAll().ToList();
-                Current.Properties["BLockedList"] = db.Blocked.GetAll().ToList();
-                Current.Properties["UserSettings"] = null;
-                Current.Properties["UserMessages"] = null;
-                Current.Properties["UserId"] = null;
-                Current.Properties["SelectedChatId"] = null;
-                Current.Properties["SelectedUserId"] = null;
-                
-                Current.Properties["MainWindow"] = null;
-            }
+            using var db = new UnitOfWork();
+            Current.Properties["UsersList"] = db.Users.GetAll().ToList();//TODO: admin
+            //Current.Properties["ReportsList"] = db.Reports.GetAll().ToList();
+            Current.Properties["BLockedList"] = db.Blocked.GetAll().ToList();
+            //Current.Properties["UserSettings"] = null;
+            Current.Properties["UserMessages"] = null;
+            Current.Properties["UserId"] = null;
+            Current.Properties["User"] = null;
+            Current.Properties["IsAdmin"] = null;
+            Current.Properties["SelectedChatId"] = null;
+            Current.Properties["SelectedUserId"] = null;
+            
+            
+            Current.Properties["MainWindow"] = null;
         }
     }
 }

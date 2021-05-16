@@ -134,5 +134,12 @@ namespace Harmonics.Views
             menuPage = new ControlPanel { Height = ContentGrid.ActualHeight, Width = ContentGrid.ActualWidth };
             ContentGrid.Children.Add(menuPage);
         }
+
+        private void Logout_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+            var loginWindow = new LoginWindow {Top = Top, Left = Left};
+            loginWindow.Show();
+        }
     }
 }

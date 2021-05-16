@@ -5,20 +5,20 @@ namespace Harmonics.ViewModels
 {
     public class UserViewModel : ViewModel
     {
-        private ObservableCollection<User> chatsCollection;
+        private ObservableCollection<User> usersCollection;
 
         public ObservableCollection<User> Users
         {
-            get => chatsCollection;
+            get => usersCollection;
             set
             {
-                chatsCollection = value;
+                usersCollection = value;
                 OnPropertyChanged($"collection");
             }
         }
         public UserViewModel()
         {
-            chatsCollection = new ObservableCollection<User>(unitOfWork.Users.GetAll());
+            usersCollection = new ObservableCollection<User>(unitOfWork.Users.GetAll());
         }
     }
 }

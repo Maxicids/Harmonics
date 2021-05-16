@@ -14,8 +14,7 @@
         <Border Name="MessageBorder" Height="{Binding Path=ActualHeight, ElementName=MessageStackPanel}" HorizontalAlignment="{Binding from_id, Converter={StaticResource MessageAlignmentConverter}}" CornerRadius="15" MinHeight="50" Width="150"  Background="#313234">
             <StackPanel Name="MessageStackPanel" VerticalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="5,4,0,0" FontFamily="Calibri Bold" FontSize="16" Foreground="AliceBlue"  HorizontalAlignment="Left" Text="{Binding from_id, Converter={StaticResource IdToLoginConverter}}"></TextBlock>
-                <TextBlock TextWrapping="Wrap" Margin="5,0,5,4" FontFamily="Calibri" FontSize="15" Foreground="AliceBlue" HorizontalAlignment="Center" Text="ауаываываааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа"></TextBlock>
-                <!-- {Binding content} -->
+                <TextBlock TextWrapping="Wrap" Margin="5,0,5,4" FontFamily="Calibri" FontSize="15" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{Binding content}"></TextBlock>
             </StackPanel>
         </Border>
     </Grid>

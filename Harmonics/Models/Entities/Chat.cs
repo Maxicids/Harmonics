@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Harmonics.Models.Entities
 {
@@ -18,12 +19,12 @@ namespace Harmonics.Models.Entities
 
         [StringLength(200)]
         public string description { get; set; }
-
-        [StringLength(50)]
+        
         public byte[] mainPicture { get; set; }
         
         public int creator_id { get; set; }
         
+        [ForeignKey("creator_id")]
         public virtual User Creator { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

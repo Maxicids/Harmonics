@@ -4,31 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
+             xmlns:converters="clr-namespace:Harmonics.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
         <viewModels:ReportViewModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <converters:IdToLoginConverter x:Key="IdToLoginConverter"/>
+        <converters:ReasonIdToStringConverter x:Key="ReasonIdToStringConverter"/>
+    </UserControl.Resources>
     <Grid Background="PaleTurquoise" Name="MainGrid">
         <DataGrid HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
-                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Reports}" AutoGenerateColumns="True" Name="Reports">
-            <!-- <DataGrid.Columns> -->
-            <!--     <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/> -->
-            <!--     <DataGridTextColumn Binding="{Binding login}" Header="Login"/> -->
-            <!--     <DataGridTextColumn Binding="{Binding role}" IsReadOnly="True" Header="Role"/> -->
-            <!--     <DataGridTextColumn Binding="{Binding description}" Header="Description" /> -->
-            <!--     <DataGridTextColumn Binding="{Binding settings, ValidatesOnExceptions=True}" IsReadOnly="True" Header="Settings id"/> -->
-            <!--     <DataGridTemplateColumn Header="Profile Picture" IsReadOnly="True"> -->
-            <!--         <DataGridTemplateColumn.CellTemplate> -->
-            <!--             <DataTemplate> -->
-            <!--                 <Image Source="{Binding profile_Picture}" /> -->
-            <!--             </DataTemplate> -->
-            <!--         </DataGridTemplateColumn.CellTemplate> -->
-            <!--     </DataGridTemplateColumn> -->
-            <!--     <DataGridCheckBoxColumn Binding="{Binding is_Online}" Header="is_Online"/> -->
-            <!--     <DataGridCheckBoxColumn Binding="{Binding is_Blocked}" Header="is_Blocked"/> -->
-            <!--     <DataGridTextColumn Binding="{Binding created_At}" IsReadOnly="True" Header="created_At"/> -->
-            <!-- </DataGrid.Columns> -->
+                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Reports}" AutoGenerateColumns="False" Name="Reports">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding complainee, Converter={StaticResource IdToLoginConverter}}" Header="Complainee" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding sender_id, Converter={StaticResource IdToLoginConverter}}" IsReadOnly="True" Header="Sender"/>
+                <DataGridTextColumn Binding="{Binding reason, Converter={StaticResource ReasonIdToStringConverter}}" Header="Reason" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Binding="{Binding is_Approved}" Header="Approved"></DataGridCheckBoxColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate> 
+                        <DataTemplate> 
+                            <Button>Approve</Button> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate> 
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

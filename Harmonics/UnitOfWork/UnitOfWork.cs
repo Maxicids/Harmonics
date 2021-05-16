@@ -14,13 +14,17 @@ namespace Harmonics.Models.UnitOfWork
         private ChatsRepository chatsRepository;
         private MessageRepository messageRepository;
         private RoleRepository roleRepository;
-        public UserRepository Users => userRepository ?? (userRepository = new UserRepository(messengerModel));
-        public ReportRepository Reports => reportRepository ?? (reportRepository = new ReportRepository(messengerModel));
-        public BlockedRepository Blocked => blockedRepository ?? (blockedRepository = new BlockedRepository(messengerModel));
-        public ChatsRepository Chats => chatsRepository ?? (chatsRepository = new ChatsRepository(messengerModel));
-        public MessageRepository Messages => messageRepository ?? (messageRepository = new MessageRepository(messengerModel));
-        public RoleRepository Roles => roleRepository ?? (roleRepository = new RoleRepository(messengerModel));
-        
+        private ParticipantRepository participantRepository;
+        private ReportContentRepository reportContentRepository;
+        public UserRepository Users => userRepository ??= new UserRepository(messengerModel);
+        public ReportRepository Reports => reportRepository ??= new ReportRepository(messengerModel);
+        public BlockedRepository Blocked => blockedRepository ??= new BlockedRepository(messengerModel);
+        public ChatsRepository Chats => chatsRepository ??= new ChatsRepository(messengerModel);
+        public MessageRepository Messages => messageRepository ??= new MessageRepository(messengerModel);
+        public RoleRepository Roles => roleRepository ??= new RoleRepository(messengerModel);
+        public ParticipantRepository Participants => participantRepository ??= new ParticipantRepository(messengerModel);
+        public ReportContentRepository ReportContents =>
+            reportContentRepository ??= new ReportContentRepository(messengerModel);
         public void Save()
         {
             messengerModel.SaveChanges();

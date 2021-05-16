@@ -75,3 +75,4 @@ D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\bin\Debug\en\Microsoft.Wi
 D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\bin\Debug\en\Microsoft.Windows.Design.Interaction.resources.dll
 D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\obj\Debug\Views\MenuPages\ChatTemplates\CreateNewChat.baml
 D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\obj\Debug\Views\MenuPages\ChatTemplates\CreateNewChat.g.cs
+D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\bin\Debug\Apex.dll

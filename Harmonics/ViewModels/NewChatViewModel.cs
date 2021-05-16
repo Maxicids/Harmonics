@@ -13,18 +13,16 @@ namespace Harmonics.ViewModels
         private byte[] mainPicture;
         private int creator_id;
         private string info;
-
+        
         public NewChatViewModel()
         {
             var imageUri = new Uri("../../Properties/Images/Avatar1.jpg", UriKind.Relative);
             var imageBitmap = new BitmapImage(imageUri);
             var encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(imageBitmap));
-            using(var ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                MainPicture = ms.ToArray();
-            }
+            using var ms = new MemoryStream();
+            encoder.Save(ms);
+            MainPicture = ms.ToArray();
         }
         public string Title
         {
@@ -75,15 +73,21 @@ namespace Harmonics.ViewModels
                 OnPropertyChanged("Info");
             }
         }
-
         public void AddNewChat()
         {
-            unitOfWork.Chats.Create(new Chat
+            var userId = Convert.ToInt32(Application.Current.Properties["UserId"]); 
+            var chat = new Chat
             {
                 title = Title,
                 description = Description,
                 mainPicture = MainPicture,
-                creator_id = Convert.ToInt32(Application.Current.Properties["UserId"]) 
+                creator_id = userId 
+            };
+            unitOfWork.Chats.Create(chat);
+            unitOfWork.Participants.Create( new Participant
+            {
+                chat = chat.id,
+                participant1 = userId
             });
             unitOfWork.Save();
         }

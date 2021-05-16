@@ -6,7 +6,7 @@ namespace Harmonics.ViewModels
 {
     public class ViewModel : INotifyPropertyChanged
     {
-        protected readonly UnitOfWork unitOfWork = new UnitOfWork();
+        protected readonly UnitOfWork unitOfWork = new();
         #region Public Event
         
         public event PropertyChangedEventHandler PropertyChanged;

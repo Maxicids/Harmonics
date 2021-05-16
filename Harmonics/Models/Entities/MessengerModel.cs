@@ -105,7 +105,7 @@ namespace Harmonics.Models.Entities
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Reports1)
                 .WithRequired(e => e.User1)
-                .HasForeignKey(e => e.user_id)
+                .HasForeignKey(e => e.complainee)
                 .WillCascadeOnDelete(false);
         }
     }

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using Harmonics.Models.Entities;
-using Harmonics.Models.ServerProvider;
+using Harmonics.Models.UnitOfWork;
 using Harmonics.Validation;
 
 namespace Harmonics.ViewModels
@@ -19,7 +18,7 @@ namespace Harmonics.ViewModels
             set
             {
                 login = value;
-                OnPropertyChanged("Login");
+                OnPropertyChanged($"Login");
             } 
         }
 
@@ -29,7 +28,7 @@ namespace Harmonics.ViewModels
             set
             {
                 password = value;
-                OnPropertyChanged("Password");
+                OnPropertyChanged($"Password");
             } 
         }
         public string Info
@@ -38,7 +37,7 @@ namespace Harmonics.ViewModels
             set
             {
                 info = value;
-                OnPropertyChanged("Info");
+                OnPropertyChanged($"Info");
             } 
         }
         public bool LoginUser()
@@ -63,14 +62,18 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.PasswordTooLong;
                 return false;
             }
-            var user = unitOfWork.Users.Login(Login, PasswordHash.CreateHash(Password));
+            var user = unitOfWork.Users.Login(Login, Password);
             if (user == null)
             {
                 Info = ErrorMessages.WrongLoginOrPassword;
                 return false;
             }
-            Application.Current.Properties["UserId"] = user.id;
             Info = "Success";
+            Application.Current.Properties["User"] = user;
+            Application.Current.Properties["UserId"] = user.id;//TODO: id
+            if (user.role != 1) return true;
+            using var db = new UnitOfWork();
+            Application.Current.Properties["UsersList"] = db.Users.GetAll().ToList();
             return true;
         }
 
@@ -85,5 +88,6 @@ namespace Harmonics.ViewModels
             Info = ErrorMessages.LoginTooLong;
             return false;
         }
+        
     }
 }

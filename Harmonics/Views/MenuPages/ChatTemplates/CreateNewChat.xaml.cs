@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
-using Harmonics.Models.Entities;
 using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
@@ -52,11 +51,9 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
             
             var encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(imageBitmap));
-            using(var ms = new MemoryStream())
-            {
-                encoder.Save(ms);
-                newChatViewModel.MainPicture = ms.ToArray();
-            }
+            using var ms = new MemoryStream();
+            encoder.Save(ms);
+            newChatViewModel.MainPicture = ms.ToArray();
         }
     }
 }
