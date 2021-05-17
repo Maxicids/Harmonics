@@ -70,10 +70,10 @@ namespace Harmonics.ViewModels
             }
             Info = "Success";
             Application.Current.Properties["User"] = user;
-            Application.Current.Properties["UserId"] = user.id;//TODO: id
             if (user.role != 1) return true;
             using var db = new UnitOfWork();
             Application.Current.Properties["UsersList"] = db.Users.GetAll().ToList();
+            Application.Current.Properties["BLockedList"] = db.Blocked.GetAll().ToList();
             return true;
         }
 

@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
 {

@@ -22,7 +22,6 @@ namespace Harmonics.Models.Repository
         {
             return messengerModel.Settings.Find(id);
         }
-
         public void Create(Setting item)
         {
             messengerModel.Settings.Add(item);

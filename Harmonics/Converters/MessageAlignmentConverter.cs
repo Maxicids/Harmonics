@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using Harmonics.Models.Entities;
 
 namespace Harmonics.Converters
 {
@@ -9,7 +10,7 @@ namespace Harmonics.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null && (int) value == System.Convert.ToInt32(Application.Current.Properties["UserId"]))
+            if (value != null && (int) value == System.Convert.ToInt32( ((User) Application.Current.Properties["User"]).id))
             {
                 return HorizontalAlignment.Right;
             }

@@ -27,7 +27,7 @@ namespace Harmonics.Repository
         }
         public Role GetUserRole()
         {
-            var roleId = messengerModel.Users.Find(Convert.ToInt32(Application.Current.Properties["UserId"]));
+            var roleId = messengerModel.Users.Find(Convert.ToInt32( ((User) Application.Current.Properties["User"]).id));
             return messengerModel.Roles.Find(roleId);
         }
 

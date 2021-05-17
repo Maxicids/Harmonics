@@ -9,30 +9,20 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
 {
     public partial class CreateNewChat : IResizeable
     {
-        private readonly NewChatViewModel newChatViewModel = new NewChatViewModel();
+        private readonly NewChatViewModel newChatViewModel = new();
         public CreateNewChat()
         {
             InitializeComponent();
             DataContext = newChatViewModel;
+            newChatViewModel.ActualHeight =  Height;
+            newChatViewModel.ActualWidth = Width;
         }
         public void ChangeSize(double height, double width)
         {
             Height = height;
             Width = width;
         }
-
-        private void CLose_OnClick(object sender, RoutedEventArgs e)
-        {
-            var chats = new Chats { Height = ActualHeight, Width = ActualWidth };
-            (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(chats);
-        }
-
-        private void AddChat_OnClick(object sender, RoutedEventArgs e)
-        {
-            newChatViewModel.AddNewChat();
-            //Todo: create chat
-        }
-
+        
         private void ChooseImage_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             var dlg = new Microsoft.Win32.OpenFileDialog

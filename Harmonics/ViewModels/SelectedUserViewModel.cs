@@ -57,7 +57,6 @@ namespace Harmonics.ViewModels
         }
 
         public Harmonics.Command.Command CloseCommand => closeCommand;
-
         public Harmonics.Command.Command ReportCommand => reportCommand;
         public Harmonics.Command.Command ShowReportContentCommand => showReportContentCommand;
 
@@ -93,6 +92,7 @@ namespace Harmonics.ViewModels
                 complainee = Convert.ToInt32(Application.Current.Properties["SelectedUserId"])
             });
             unitOfWork.Save();
+            DoCloseCommand();
         }
 
         public SelectedUserViewModel()

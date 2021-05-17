@@ -39,5 +39,13 @@ namespace Harmonics.Views.MenuPages
             var imageBitmap = new BitmapImage(imageUri);
             Image.ImageSource = imageBitmap;
         }
+
+        private void TbTextSize_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Windows;
+﻿using System.Windows;
 using Harmonics.Models.UnitOfWork;
 
 namespace Harmonics
@@ -10,17 +9,12 @@ namespace Harmonics
         {
             base.OnStartup(e);
             using var db = new UnitOfWork();
-            Current.Properties["UsersList"] = db.Users.GetAll().ToList();//TODO: admin
-            //Current.Properties["ReportsList"] = db.Reports.GetAll().ToList();
-            Current.Properties["BLockedList"] = db.Blocked.GetAll().ToList();
-            //Current.Properties["UserSettings"] = null;
+            Current.Properties["UsersList"] = null;
+            Current.Properties["BLockedList"] = null;
             Current.Properties["UserMessages"] = null;
-            Current.Properties["UserId"] = null;
             Current.Properties["User"] = null;
-            Current.Properties["IsAdmin"] = null;
             Current.Properties["SelectedChatId"] = null;
             Current.Properties["SelectedUserId"] = null;
-            
             
             Current.Properties["MainWindow"] = null;
         }

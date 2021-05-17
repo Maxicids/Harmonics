@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using Harmonics.ViewModels;
+﻿using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
 {
@@ -17,11 +16,6 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
         {
             Height = height;
             Width = width;
-        }
-
-        private void Report_OnClick(object sender, RoutedEventArgs e)
-        {
-            // //TODO: Report
         }
     }
 }

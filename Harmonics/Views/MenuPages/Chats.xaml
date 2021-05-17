@@ -6,6 +6,7 @@
              xmlns:chatTemplates="clr-namespace:Harmonics.Views.MenuPages.ChatTemplates"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
+             x:Name="Jopa"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
@@ -16,12 +17,14 @@
             <Grid VerticalAlignment="Top" Height="40" Width="{Binding Path=ActualWidth, ElementName=MainGrid}" Background="#242F3D">
                 <materialDesign:PackIcon Cursor="Hand" MouseDown="UIElement_OnMouseDown" Margin="10,0,0,0" VerticalAlignment="Center" Kind="PlusBold" Width="20" Height="20" Foreground="#ffc107"/>
             </Grid>
-            <ListBox Margin="0,40,0,0" x:Name="ChatViewsList" ItemsSource="{Binding Chats}"
+            <ListBox Margin="0,40,0,0" x:Name="ChatViewsList" ItemsSource="{Binding Chats, UpdateSourceTrigger=PropertyChanged}"
                      Grid.RowSpan="6"  
                      HorizontalAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <HierarchicalDataTemplate>
-                        <chatTemplates:ChatView MouseDown="Chat_OnMouseDown" Width="{Binding Path=ActualWidth, ElementName=ChatViewsList}"/> 
+                        <Grid>
+                            <chatTemplates:ChatView Width="{Binding Path=ActualWidth, ElementName=ChatViewsList}" MouseDown="Chat_OnMouseDown"/> 
+                        </Grid>
                     </HierarchicalDataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

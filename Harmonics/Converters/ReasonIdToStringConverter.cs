@@ -2,7 +2,6 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using Harmonics.Models.Entities;
 using Harmonics.Models.UnitOfWork;
 
 namespace Harmonics.Converters

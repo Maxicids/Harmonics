@@ -16,12 +16,14 @@ namespace Harmonics.Models.UnitOfWork
         private RoleRepository roleRepository;
         private ParticipantRepository participantRepository;
         private ReportContentRepository reportContentRepository;
+        private SettingsRepository settingsRepository;
         public UserRepository Users => userRepository ??= new UserRepository(messengerModel);
         public ReportRepository Reports => reportRepository ??= new ReportRepository(messengerModel);
         public BlockedRepository Blocked => blockedRepository ??= new BlockedRepository(messengerModel);
         public ChatsRepository Chats => chatsRepository ??= new ChatsRepository(messengerModel);
         public MessageRepository Messages => messageRepository ??= new MessageRepository(messengerModel);
         public RoleRepository Roles => roleRepository ??= new RoleRepository(messengerModel);
+        public SettingsRepository Settings => settingsRepository ??= new SettingsRepository(messengerModel);
         public ParticipantRepository Participants => participantRepository ??= new ParticipantRepository(messengerModel);
         public ReportContentRepository ReportContents =>
             reportContentRepository ??= new ReportContentRepository(messengerModel);

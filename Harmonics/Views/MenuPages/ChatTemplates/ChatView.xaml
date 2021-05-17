@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="100" d:DesignWidth="500">
     <Grid Name="MainGrid" Background="#A9020317" SizeChanged="MainGrid_OnSizeChanged">
@@ -20,5 +21,14 @@
                     <TextBlock VerticalAlignment="Center" TextWrapping="WrapWithOverflow" Name="Description" Height="71" HorizontalAlignment="Center" Text="{Binding Path=description}" FontSize="18" FontFamily="Calibri" Margin="10,0,0,0" ></TextBlock>
             </StackPanel>
         </StackPanel>
+        <Grid VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,40,0" Width="35" Height="35" DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+            AncestorType={x:Type UserControl}, AncestorLevel=2}, Path=DataContext}">
+            <Button Padding="0" 
+                    Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" 
+                    Command="{Binding DeleteChatCommand}" CommandParameter="{Binding Path=Text, ElementName=Id}">
+                <materialDesign:PackIcon Width="25" Height="25" Kind="Delete" Foreground="#ffc107"/>
+            </Button>
+        </Grid>
+        
     </Grid>
 </UserControl>

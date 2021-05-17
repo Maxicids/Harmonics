@@ -15,15 +15,15 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Border MouseDown="ChooseImage_OnMouseDown" Margin="5,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="100" CornerRadius="100,100,100,100">
                     <Border.Background>
-                        <ImageBrush x:Name="Image" Stretch="Fill" ImageSource="{Binding User[0].profile_Picture}"/>
+                        <ImageBrush x:Name="Image" Stretch="Fill" ImageSource="{Binding ImageOpenClose, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     </Border.Background>
                     <!-- ../../../Properties/Images/Avatar1.jpg -->
                 </Border>
             </StackPanel>
-            <TextBlock Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding User[0].login}" ></TextBlock>
-            <TextBox Name="TbDescription" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Description" Text="{Binding User[0].description}"
+            <TextBlock Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" ></TextBlock>
+            <TextBox Name="TbDescription" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Description" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-            <TextBox Name="TbTextSize" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Chat Text Size" Text="{Binding User[0].Setting.chat_font_size}"
+            <TextBox PreviewTextInput="TbTextSize_OnPreviewTextInput" Name="TbTextSize" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Chat Text Size" Text="{Binding ChatFontSize, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
         </StackPanel>
         <Button VerticalAlignment="Bottom" Click="ButtonBase_OnClick">Save</Button>
