@@ -7,17 +7,13 @@
              xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.DataContext>
-        <viewModels:SettingsViewModel/>
-    </UserControl.DataContext>
     <Grid Background="#0E0C1D">
         <StackPanel VerticalAlignment="Top" Height="300" Orientation="Vertical">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Border MouseDown="ChooseImage_OnMouseDown" Margin="5,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Center" Width="100" Height="100" CornerRadius="100,100,100,100">
                     <Border.Background>
-                        <ImageBrush x:Name="Image" Stretch="Fill" ImageSource="{Binding ImageOpenClose, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        <ImageBrush x:Name="Image" Stretch="Fill" ImageSource="{Binding ProfilePicture, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                     </Border.Background>
-                    <!-- ../../../Properties/Images/Avatar1.jpg -->
                 </Border>
             </StackPanel>
             <TextBlock Margin="5,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="36" FontFamily="Calibri Bold" Foreground="#ffc107" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" ></TextBlock>
@@ -26,6 +22,7 @@
             <TextBox PreviewTextInput="TbTextSize_OnPreviewTextInput" Name="TbTextSize" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Chat Text Size" Text="{Binding ChatFontSize, UpdateSourceTrigger=PropertyChanged}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
         </StackPanel>
-        <Button VerticalAlignment="Bottom" Click="ButtonBase_OnClick">Save</Button>
+        <Button VerticalAlignment="Bottom" Command="{Binding SaveCommand}">Save</Button>
+        <Label x:Name="InfoLabel" Content="{Binding Info}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="0,300,0,0" FontWeight="DemiBold"/>
     </Grid>
 </UserControl>

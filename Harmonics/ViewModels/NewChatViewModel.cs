@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Harmonics.ImageProcessing;
 using Harmonics.Models.Entities;
 using Harmonics.Views;
 using Harmonics.Views.MenuPages;
@@ -23,11 +24,7 @@ namespace Harmonics.ViewModels
         {
             var imageUri = new Uri("../../Properties/Images/Avatar1.jpg", UriKind.Relative);//TODO: function
             var imageBitmap = new BitmapImage(imageUri);
-            var encoder = new JpegBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(imageBitmap));
-            using var ms = new MemoryStream();
-            encoder.Save(ms);
-            MainPicture = ms.ToArray();
+            MainPicture = ImageConverter.GetBytesFromImage(imageBitmap);
             
             createNewChatCommand = new Harmonics.Command.Command(DoCreateNewChatCommand);
             closeCommand = new Harmonics.Command.Command(DoCloseCommand);

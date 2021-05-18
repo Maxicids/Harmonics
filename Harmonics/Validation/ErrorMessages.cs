@@ -2,6 +2,8 @@
 {
     public static class ErrorMessages
     {
+        #region Login/Registration
+
         public const string AlreadyExists = "User with this login is already exists";
         public const string LoginIsEmpty = "Please input login";
         public const string PasswordIsEmpty = "Please input password";
@@ -9,5 +11,14 @@
         public const string PasswordTooLong = "Password maximum length is 20";
         public const string LoginAndPasswordStructure = "The username and password can only consist of letters and numbers";
         public const string WrongLoginOrPassword = "Wrong login or password";
+
+        #endregion
+
+        #region Setting
+
+        public const string DescriptionMaxLength = "Descroption max length is 200 symbols";
+        public const string TextSizeRange = "Text size range must be from 12 to 16";
+
+        #endregion
     }
 }

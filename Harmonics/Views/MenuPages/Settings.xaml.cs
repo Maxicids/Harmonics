@@ -8,21 +8,17 @@ namespace Harmonics.Views.MenuPages
 {
     public partial class Settings : IResizeable
     {
+        private readonly SettingsViewModel settingsViewModel = new();
         public Settings()
         {
             InitializeComponent();
+            DataContext = settingsViewModel;
         }
         public void ChangeSize(double height, double width)
         {
             Height = height;
             Width = width;
         }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-        {
-            //TODO: Save
-        }
-
         private void ChooseImage_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             var dlg = new Microsoft.Win32.OpenFileDialog
@@ -38,6 +34,7 @@ namespace Harmonics.Views.MenuPages
             var imageUri = new Uri(filename, UriKind.Relative);
             var imageBitmap = new BitmapImage(imageUri);
             Image.ImageSource = imageBitmap;
+            settingsViewModel.ProfilePicture = imageBitmap;
         }
 
         private void TbTextSize_OnPreviewTextInput(object sender, TextCompositionEventArgs e)

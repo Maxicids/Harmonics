@@ -112,6 +112,7 @@
     <Compile Include="Converters\StatusColorConverter.cs" />
     <Compile Include="Converters\UserDateConverter.cs" />
     <Compile Include="Converters\UserDescriptionConverter.cs" />
+    <Compile Include="ImageProcessing\ImageConverter.cs" />
     <Compile Include="Models\Entities\Blocked.cs" />
     <Compile Include="Models\Entities\Chat.cs" />
     <Compile Include="Models\Entities\Message.cs" />

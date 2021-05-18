@@ -1,31 +1,30 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.IO;
+using Harmonics.ImageProcessing;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Harmonics.Models.Entities;
+using Harmonics.Validation;
 
 namespace Harmonics.ViewModels
 {
     public class SettingsViewModel : ViewModel
     {
         private ObservableCollection<User> selectedSelectedUser;
-        private Harmonics.Command.Command saveCommand;
+        private readonly Harmonics.Command.Command saveCommand;
         private Setting setting;
+        private string info;
         private string login;
         private string description;
         private int chatFontSize;
         private BitmapImage profilePicture;
         public BitmapImage ProfilePicture
         {
-            get
-            {
-                return profilePicture;
-            }
+            get => profilePicture;
             set
             {
                 profilePicture = value;
-                OnPropertyChanged();
+                OnPropertyChanged($"ProfilePicture");
             }
         }
         public string Description
@@ -45,6 +44,15 @@ namespace Harmonics.ViewModels
             {
                 login = value;
                 OnPropertyChanged($"Login");
+            }
+        }
+        public string Info
+        {
+            get => info;
+            set
+            {
+                info = value;
+                OnPropertyChanged($"Info");
             }
         }
         public int ChatFontSize
@@ -68,7 +76,25 @@ namespace Harmonics.ViewModels
 
         private void DoSaveCommand()
         {
-            
+            if (Description.Length > 200)
+            {
+                Info = ErrorMessages.DescriptionMaxLength;
+                return;
+            }
+
+            if (ChatFontSize is < 12 or > 16)
+            {
+                Info = ErrorMessages.TextSizeRange;
+                return;
+            }
+
+            Info = "";
+            selectedSelectedUser[0].description = Description;
+            selectedSelectedUser[0].profile_Picture = ImageConverter.GetBytesFromImage(ProfilePicture);
+            setting.chat_font_size = ChatFontSize;
+            unitOfWork.Users.Update(selectedSelectedUser[0]);
+            unitOfWork.Settings.Update(setting);
+            unitOfWork.Save();
         }
         public Harmonics.Command.Command SaveCommand => saveCommand;
         public SettingsViewModel()
@@ -83,25 +109,7 @@ namespace Harmonics.ViewModels
             setting = unitOfWork.Settings.Get(selectedSelectedUser[0].settings);
             chatFontSize = setting.chat_font_size;
             login = selectedSelectedUser[0].login;
-            profilePicture = LoadImage(selectedSelectedUser[0].profile_Picture);
-        }
-        
-        private static BitmapImage LoadImage(byte[] imageData)
-        {
-            if (imageData == null || imageData.Length == 0) return null;
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(imageData))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            image.Freeze();
-            return image;
+            profilePicture = ImageConverter.GetImageFromBytes(selectedSelectedUser[0].profile_Picture);
         }
     }
 }

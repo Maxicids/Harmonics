@@ -44,7 +44,7 @@ namespace Harmonics.Views
             }
             catch (Exception exception)
             {
-                // ignore
+                Console.WriteLine(exception.StackTrace);
             }
         }
         private void MainGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
