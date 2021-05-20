@@ -9,10 +9,5 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
             InitializeComponent();
             //TODO: Scrollable
         }
-
-        private void Send_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //TODO: Send
-        }
     }
 }

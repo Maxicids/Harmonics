@@ -41,7 +41,17 @@ namespace Harmonics.Repository
             if (participant != null)
                 messengerModel.Participants.Remove(participant);
         }
-
+        public void DeleteByChatAndParticipantId(int chatId, int participantId)
+        {
+            var participants = messengerModel.Participants.
+                Where(x => x.chat == chatId && x.participant1 == participantId).
+                AsEnumerable();
+            foreach (var participant in participants)
+            {
+                if (participant != null)
+                    messengerModel.Participants.Remove(participant);
+            }
+        }
         public void DeleteByChatId(int id)
         {
             var participants = messengerModel.Participants.Where(x => x.chat == id).AsEnumerable();

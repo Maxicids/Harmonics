@@ -6,17 +6,27 @@
              xmlns:local="clr-namespace:Harmonics.Views.MenuPages.ChatTemplates"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:converters="clr-namespace:Harmonics.Converters"
+             xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:ChatSizeConverter x:Key="ChatSizeConverter" />
         <converters:ParticipantsSizeConverter x:Key="ParticipantsSizeConverter" />
+        <converters:CanAddParticipantToChatConverter x:Key="CanAddParticipantToChatConverter" />
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModels:SelectedChatViewModel/>
+    </UserControl.DataContext>
     <materialDesign:TransitioningContent x:Name="Product" OpeningEffect="{materialDesign:TransitionEffect SlideInFromLeft, Duration=0:0:0.4}">
         <Grid Name="MainGrid">
             <Grid VerticalAlignment="Top" ZIndex="1" Background="#242F3D" Height="40">
-                <materialDesign:PackIcon MouseDown="Back_OnMouseDown" Cursor="Hand" Margin="10,0,0,0" Kind="ArrowBack" Width="20" Height="20" Foreground="#ffc107" VerticalAlignment="Center"/>
-                <materialDesign:PackIcon Cursor="Hand" Margin="35,0,0,0" VerticalAlignment="Center" Kind="PlusBold" Width="20" Height="20" Foreground="#ffc107"/>
+                <Button Click="Back_OnMouseDown" BorderThickness="0" BorderBrush="{x:Null}" HorizontalAlignment="Left" Width="50" Height="40" Background="Transparent">
+                    <materialDesign:PackIcon Cursor="Hand" Kind="ArrowBack" Width="20" Height="20" Foreground="#ffc107" VerticalAlignment="Center"/>
+                </Button>
+                <Button Visibility="{Binding Converter={StaticResource CanAddParticipantToChatConverter}}" Click="AddParticipant_OnClick" BorderThickness="0" BorderBrush="{x:Null}" HorizontalAlignment="Left" Margin="50,0,0,0" Width="50" Height="40" Background="Transparent">
+                    <materialDesign:PackIcon Cursor="Hand" VerticalAlignment="Center" Kind="PlusBold" HorizontalAlignment="Center" Width="20" Height="20" Foreground="#ffc107"/>
+                </Button>
+                <TextBlock Foreground="#ffc107" Width="200" FontSize="24" FontFamily="Calibri Bold" Text="{Binding ChatName}" TextAlignment="Center"></TextBlock>
             </Grid>
             <StackPanel Width="{Binding Path=ActualWidth, ElementName=MainGrid}" Orientation="Horizontal">
                 <Grid Name="ChatTemplate">

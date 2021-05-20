@@ -10,15 +10,12 @@ namespace Harmonics.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            switch (value?.ToString())
+            return value?.ToString() switch
             {
-                case "False":
-                    return (SolidColorBrush)(new BrushConverter().ConvertFrom("#4a4a4a"));
-                case "True":
-                    return (SolidColorBrush)(new BrushConverter().ConvertFrom("#6a6a6a"));
-                default:
-                    return new SolidColorBrush();
-            }
+                "False" => new BrushConverter().ConvertFrom("#4a4a4a"),
+                "True" => new BrushConverter().ConvertFrom("#07e200"),
+                _ => new SolidColorBrush()
+            };
         }
      
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

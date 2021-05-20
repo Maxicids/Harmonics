@@ -101,6 +101,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Command\Command.cs" />
+    <Compile Include="Converters\CanAddParticipantToChatConverter.cs" />
     <Compile Include="Converters\ChatSizeConverter.cs" />
     <Compile Include="Converters\DeleteFromChatButtonConverter.cs" />
     <Compile Include="Converters\IdToLoginConverter.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="ServerProvider\StringProcessing\PasswordHash.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Validation\ErrorMessages.cs" />
+    <Compile Include="ViewModels\AddNewUserViewModel.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\IResizeable.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\SelectedChatViewModel.cs" />
     <Compile Include="ViewModels\SelectedUserViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
@@ -162,6 +165,9 @@
     </Compile>
     <Compile Include="Views\MenuPages\Chats.xaml.cs">
       <DependentUpon>Chats.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuPages\ChatTemplates\AddNewUser.xaml.cs">
+      <DependentUpon>AddNewUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuPages\ChatTemplates\Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
@@ -228,6 +234,7 @@
     <Page Include="Views\LoginWindow.xaml" />
     <Page Include="Views\MainWindow.xaml" />
     <Page Include="Views\MenuPages\Chats.xaml" />
+    <Page Include="Views\MenuPages\ChatTemplates\AddNewUser.xaml" />
     <Page Include="Views\MenuPages\ChatTemplates\Chat.xaml" />
     <Page Include="Views\MenuPages\ChatTemplates\ChatView.xaml" />
     <Page Include="Views\MenuPages\ChatTemplates\CreateNewChat.xaml" />

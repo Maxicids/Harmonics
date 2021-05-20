@@ -15,7 +15,7 @@
     <materialDesign:TransitioningContent OpeningEffect="{materialDesign:TransitionEffect SlideInFromRight, Duration=0:0:0.4}">
         <Grid Name="MainGrid">
             <Grid VerticalAlignment="Top" Height="40" Width="{Binding Path=ActualWidth, ElementName=MainGrid}" Background="#242F3D">
-                <materialDesign:PackIcon Cursor="Hand" MouseDown="UIElement_OnMouseDown" Margin="10,0,0,0" VerticalAlignment="Center" Kind="PlusBold" Width="20" Height="20" Foreground="#ffc107"/>
+                <materialDesign:PackIcon Cursor="Hand" MouseDown="AddNewChat_OnMouseDown" Margin="10,0,0,0" VerticalAlignment="Center" Kind="PlusBold" Width="20" Height="20" Foreground="#ffc107"/>
             </Grid>
             <ListBox Margin="0,40,0,0" x:Name="ChatViewsList" ItemsSource="{Binding Chats, UpdateSourceTrigger=PropertyChanged}"
                      Grid.RowSpan="6"  

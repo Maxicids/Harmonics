@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using Harmonics.Models.UnitOfWork;
 using Harmonics.Validation;
 
 namespace Harmonics.ViewModels
@@ -68,12 +67,21 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.WrongLoginOrPassword;
                 return false;
             }
+
+            if (user.is_Blocked)
+            {
+                Info = ErrorMessages.HasBeenBlocked;
+                return false;
+            }
             Info = "Success";
             Application.Current.Properties["User"] = user;
+            user.is_Online = true;
+            unitOfWork.Users.Update(user);
+            unitOfWork.Save();
             if (user.role != 1) return true;
-            using var db = new UnitOfWork();
-            Application.Current.Properties["UsersList"] = db.Users.GetAll().ToList();
-            Application.Current.Properties["BLockedList"] = db.Blocked.GetAll().ToList();
+            
+            Application.Current.Properties["UsersList"] = unitOfWork.Users.GetAll().ToList();
+            Application.Current.Properties["BLockedList"] = unitOfWork.Blocked.GetAll().ToList();
             return true;
         }
 

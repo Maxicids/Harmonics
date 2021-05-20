@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Input;
 using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
@@ -16,9 +15,17 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
             Width = width;
         }
 
-        private void Back_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void Back_OnMouseDown(object sender, RoutedEventArgs e)
         {
+            ParticipantViewModel.StopUpdating();
+            MessagesViewModel.StopUpdating();
             var selectedChat = new Chats { Height = ActualHeight, Width = ActualWidth };
+            (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
+        }
+
+        private void AddParticipant_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selectedChat = new AddNewUser { Height = ActualHeight, Width = ActualWidth };
             (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
         }
     }

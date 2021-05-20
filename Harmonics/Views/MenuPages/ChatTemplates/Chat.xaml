@@ -30,9 +30,12 @@
             <Grid VerticalAlignment="Bottom" Height="70" Background="#17212b">
                 <Border Margin="30, 0, 30, 0" CornerRadius="25" Background="#4C4C4F" VerticalAlignment="Center" Height="50">
                     <Grid Name="MessageStackPanel" Margin="20,0,20,0" >
-                        <TextBox Width="{Binding Path=ActualWidth, ElementName=MessageStackPanel, Converter={StaticResource MessageTextBoxSizeConverter}}" Foreground="White" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Message"
+                        <TextBox Text="{Binding Message, UpdateSourceTrigger=PropertyChanged}" Width="{Binding Path=ActualWidth, ElementName=MessageStackPanel, Converter={StaticResource MessageTextBoxSizeConverter}}" Foreground="White" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Message"
                                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                        <materialDesign:PackIcon MouseDown="Send_OnMouseDown" Cursor="Hand" Kind="Send" Width="20" Height="20" Foreground="#ffc107" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                        <Button IsDefault="True" Command="{Binding SendMessageCommand}" Padding="0" HorizontalAlignment="Right"
+                                Background="{x:Null}" BorderBrush="{x:Null}" Width="25">
+                            <materialDesign:PackIcon Kind="Send" Foreground="#ffc107"/>
+                        </Button>
                     </Grid>
                 </Border>
             </Grid>

@@ -14,20 +14,5 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
         {
             Application.Current.Properties["SelectedUserId"] = Id.Text;
         }
-
-        private void RemoveFromChat_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var result = MessageBox.Show("Do you want to delete this user?", "Confirmation",MessageBoxButton.YesNo);
-            if(result == MessageBoxResult.Yes)
-            { 
-                //TODO: Delete command
-                //
-                e.Handled = true;
-            }
-            else if (result == MessageBoxResult.No)
-            { 
-                e.Handled = true;
-            }
-        }
     }
 }

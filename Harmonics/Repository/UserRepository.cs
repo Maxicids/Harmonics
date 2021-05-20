@@ -4,6 +4,7 @@ using System.Linq;
 using Harmonics.Models.Entities;
 using Harmonics.Models.ServerProvider;
 
+// ReSharper disable once CheckNamespace
 namespace Harmonics.Models.Repository
 {
     public class UserRepository : IRepository<User>

@@ -23,18 +23,25 @@ namespace Harmonics.ViewModels
         public Harmonics.Command.Command DeleteChatCommand => deleteChatCommand;
         private void DoDeleteChatCommand(object parameter)
         {
-            using var db = new UnitOfWork();
-            var value = System.Convert.ToInt32(parameter);
-            db.Participants.DeleteByChatId(System.Convert.ToInt32(value));
-            db.Chats.Delete(value);
+            using var db = new UnitOfWork();//TODO: test
+            var chatId = System.Convert.ToInt32(parameter);
+            var chat = db.Chats.Get(chatId);
+            var userId = ((User) Application.Current.Properties["User"]).id;
+            if (chat.creator_id == userId)
+            {
+                db.Participants.DeleteByChatId(chatId);
+                db.Chats.Delete(chatId);
+            }
+            db.Participants.DeleteByChatAndParticipantId(chatId, userId);
             db.Save();
             UpdateChats();
         }
 
         private void UpdateChats()
         {
+            using var db = new UnitOfWork();
             chatsCollection = 
-                new ObservableCollection<Chat>(unitOfWork.Chats.GetAllByUserId(
+                new ObservableCollection<Chat>(db.Chats.GetAllByUserId(
                     Convert.ToInt32( ((User) Application.Current.Properties["User"]).id)));
             OnPropertyChanged($"Chats");
         }

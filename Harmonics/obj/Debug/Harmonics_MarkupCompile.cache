@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Epam\OOP\Repositories\Messenger\Harmonics\Harmonics\App.xaml
-17-1087240025
+18948273476
 5-120724818
-741092025866
+78-259714322
 251432606619
-Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\MenuPages\Chats.xaml;Views\MenuPages\ChatTemplates\Chat.xaml;Views\MenuPages\ChatTemplates\ChatView.xaml;Views\MenuPages\ChatTemplates\CreateNewChat.xaml;Views\MenuPages\ChatTemplates\Message.xaml;Views\MenuPages\ChatTemplates\ParticipantPreview.xaml;Views\MenuPages\ChatTemplates\Participants.xaml;Views\MenuPages\ChatTemplates\SelectedChatView.xaml;Views\MenuPages\ChatTemplates\UserView.xaml;Views\MenuPages\Settings.xaml;Views\MenuPages\ControlPanel.xaml;Views\MenuPages\ControlPanelTables\BlockedUsersTable.xaml;Views\MenuPages\ControlPanelTables\ReportsTable.xaml;Views\MenuPages\ControlPanelTables\UsersTable.xaml;Views\RegistrationWindow.xaml;
+Views\LoginWindow.xaml;Views\MainWindow.xaml;Views\MenuPages\Chats.xaml;Views\MenuPages\ChatTemplates\AddNewUser.xaml;Views\MenuPages\ChatTemplates\Chat.xaml;Views\MenuPages\ChatTemplates\ChatView.xaml;Views\MenuPages\ChatTemplates\CreateNewChat.xaml;Views\MenuPages\ChatTemplates\Message.xaml;Views\MenuPages\ChatTemplates\ParticipantPreview.xaml;Views\MenuPages\ChatTemplates\Participants.xaml;Views\MenuPages\ChatTemplates\SelectedChatView.xaml;Views\MenuPages\ChatTemplates\UserView.xaml;Views\MenuPages\Settings.xaml;Views\MenuPages\ControlPanel.xaml;Views\MenuPages\ControlPanelTables\BlockedUsersTable.xaml;Views\MenuPages\ControlPanelTables\ReportsTable.xaml;Views\MenuPages\ControlPanelTables\UsersTable.xaml;Views\RegistrationWindow.xaml;
 properties\images\splash.png
 False
 

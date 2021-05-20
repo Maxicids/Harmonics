@@ -18,7 +18,7 @@
                 <Border.Background>
                     <ImageBrush Stretch="Fill" ImageSource="{Binding profile_Picture}"/>
                 </Border.Background>
-                <Ellipse Margin="32, 32, 0,0" Fill="{Binding Path=is_Online, Converter={StaticResource StatusColorConverter}}" Width="7" Height="7" />
+                <Ellipse Margin="32, 32, 0,0" Fill="{Binding Path=is_Online, Converter={StaticResource StatusColorConverter}, UpdateSourceTrigger=PropertyChanged}" Width="7" Height="7" />
             </Border>
             <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="2,0,0,0" >
@@ -26,8 +26,15 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        <Border Visibility="{Binding Path=id, Converter={StaticResource DeleteFromChatButtonConverter}}" HorizontalAlignment="Right" Width="40" Height="40" Background="#0d1521">
-            <materialDesign:PackIcon MouseDown="RemoveFromChat_OnMouseDown" Margin="0,0,17,0" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" Kind="CloseBold" Foreground="#ffc107"/>
-        </Border>
+        <Grid Visibility="{Binding Path=id, Converter={StaticResource DeleteFromChatButtonConverter}}" HorizontalAlignment="Right" Width="40" Height="40" Background="#0d1521">
+            <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, 
+            AncestorType={x:Type UserControl}, AncestorLevel=2}, Path=DataContext}">
+                <Button Padding="0" 
+                        Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Height="35" 
+                        Command="{Binding RemoveFromChatCommand}" CommandParameter="{Binding Path=Text, ElementName=Id}">
+                    <materialDesign:PackIcon Margin="0,0,15,0" Width="20" Height="20" Kind="CloseBold" Foreground="#ffc107"/>
+                </Button>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

@@ -23,7 +23,7 @@ namespace Harmonics.Views.MenuPages
             (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
         }
 
-        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        private void AddNewChat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             (sender as ParticipantPreview)?.SelectUser();
             var createNewChat = new CreateNewChat { Height = ActualHeight};

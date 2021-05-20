@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.Threading;
+using System.Windows;
+using Harmonics.Models.Entities;
 using Harmonics.Models.UnitOfWork;
+using Harmonics.ViewModels;
 
 namespace Harmonics
 {
@@ -17,6 +20,21 @@ namespace Harmonics
             Current.Properties["SelectedUserId"] = null;
             
             Current.Properties["MainWindow"] = null;
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            ParticipantViewModel.StopUpdating();
+            MessagesViewModel.StopUpdating();
+            using (var db = new UnitOfWork())
+            {
+                var user = db.Users.GetByLogin(((User) Current.Properties["User"]).login);
+                user.is_Online = false;
+                db.Users.Update(user);
+                db.Save();
+                Thread.Sleep(500);
+            }
+            base.OnExit(e);
         }
     }
 }

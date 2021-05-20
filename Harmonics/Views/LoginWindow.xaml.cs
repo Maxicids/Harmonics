@@ -18,6 +18,7 @@ namespace Harmonics.Views
         {
             InitializeComponent();
             DataContext = loginViewModel;
+            //TODO: CharIndex
         }
         private void MainGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {

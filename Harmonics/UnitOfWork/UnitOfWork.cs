@@ -3,11 +3,12 @@ using Harmonics.Models.Entities;
 using Harmonics.Models.Repository;
 using Harmonics.Repository;
 
+// ReSharper disable once CheckNamespace
 namespace Harmonics.Models.UnitOfWork
 {
     public sealed class UnitOfWork : IDisposable
     {
-        private readonly MessengerModel messengerModel = new MessengerModel();
+        private readonly MessengerModel messengerModel = new();
         private UserRepository userRepository;
         private ReportRepository reportRepository;
         private BlockedRepository blockedRepository;
@@ -29,6 +30,7 @@ namespace Harmonics.Models.UnitOfWork
             reportContentRepository ??= new ReportContentRepository(messengerModel);
         public void Save()
         {
+            //messengerModel.SaveChangesAsync();
             messengerModel.SaveChanges();
         }
  

@@ -13,7 +13,7 @@
     <Grid>
         <Grid Background="#0d1521">
             <ListBox Margin="0, 50,0 ,0" x:Name="ParticipantsViewsList" 
-                     Grid.RowSpan="6"  ItemsSource="{Binding Participants}"
+                     Grid.RowSpan="6"  ItemsSource="{Binding Participants, UpdateSourceTrigger=PropertyChanged}"
                      HorizontalAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <HierarchicalDataTemplate>

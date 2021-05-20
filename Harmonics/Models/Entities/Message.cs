@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Harmonics.Models.Entities
@@ -13,6 +14,8 @@ namespace Harmonics.Models.Entities
         [Required]
         [StringLength(2000)]
         public string content { get; set; }
+        
+        public DateTime sending_time { get; set; }
 
         public virtual Chat Chat { get; set; }
         
