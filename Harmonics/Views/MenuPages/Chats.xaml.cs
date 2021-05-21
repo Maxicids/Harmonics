@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using Harmonics.Models.Entities;
 using Harmonics.ViewModels;
 using Harmonics.Views.MenuPages.ChatTemplates;
 
@@ -18,6 +19,11 @@ namespace Harmonics.Views.MenuPages
         }
         private void Chat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (Application.Current.Properties["User"] is not User user || user.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
             var result = (sender as ChatView)?.SelectChat();
             if (result == true)
             {
@@ -33,6 +39,11 @@ namespace Harmonics.Views.MenuPages
 
         private void AddNewChat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (Application.Current.Properties["User"] is not User user || user.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
             (sender as ParticipantPreview)?.SelectUser();
             var createNewChat = new CreateNewChat { Height = ActualHeight};
             (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(createNewChat);

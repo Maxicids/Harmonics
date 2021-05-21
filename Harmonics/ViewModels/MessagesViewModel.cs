@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows;
 using Harmonics.Models.Entities;
 using Harmonics.Models.UnitOfWork;
+using Harmonics.Views;
 
 namespace Harmonics.ViewModels
 {
@@ -39,10 +40,16 @@ namespace Harmonics.ViewModels
 
         private void DoSendCommand()
         {
+            var user = Application.Current.Properties["User"] as User;
+            if (user == null || user.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
             if (string.IsNullOrEmpty(Message)) return;
             unitOfWork.Messages.Create(new Message
             {
-                from_id = Convert.ToInt32(((User)Application.Current.Properties["User"]).id),
+                from_id = Convert.ToInt32(user?.id),
                 chat_id = Convert.ToInt32(Application.Current.Properties["SelectedChatId"]),
                 content = Message,
                 sending_time = DateTime.Now

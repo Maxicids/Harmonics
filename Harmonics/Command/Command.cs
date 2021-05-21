@@ -32,13 +32,13 @@ namespace Harmonics.Command
         /// <summary>
         /// The action (or parameterized action) that will be called when the command is invoked.
         /// </summary>
-        protected Action action = null;
-        protected Action<object> parameterizedAction = null;
+        protected Action action;
+        protected Action<object> parameterizedAction;
 
         /// <summary>
         /// Bool indicating whether the command can execute.
         /// </summary>
-        private bool canExecute = false;
+        private bool canExecute;
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance can execute.

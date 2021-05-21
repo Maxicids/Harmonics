@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Harmonics.ImageProcessing;
@@ -91,7 +90,13 @@ namespace Harmonics.ViewModels
         public Harmonics.Command.Command CloseCommand => closeCommand;
         private void DoCreateNewChatCommand()
         {
-            var userId = Convert.ToInt32( ((User) Application.Current.Properties["User"]).id); 
+            var user = Application.Current.Properties["User"] as User;
+            if (user == null || user.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
+            var userId = Convert.ToInt32(user?.id); 
             var chat = new Chat
             {
                 title = Title,

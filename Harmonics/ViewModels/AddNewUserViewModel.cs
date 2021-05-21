@@ -1,4 +1,7 @@
-﻿using Harmonics.Validation;
+﻿using System.Windows;
+using Harmonics.Models.Entities;
+using Harmonics.Validation;
+using Harmonics.Views;
 
 namespace Harmonics.ViewModels
 {
@@ -30,6 +33,11 @@ namespace Harmonics.ViewModels
 
         private void DoAddCommand()
         {
+            if (Application.Current.Properties["User"] is not User currentUser || currentUser.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
             var user = unitOfWork.Users.GetByLogin(Login);
             if (user == null)
             {

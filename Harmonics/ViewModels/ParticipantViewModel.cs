@@ -4,6 +4,7 @@ using System.Threading;
 using System.Windows;
 using Harmonics.Models.Entities;
 using Harmonics.Models.UnitOfWork;
+using Harmonics.Views;
 
 namespace Harmonics.ViewModels
 {
@@ -28,6 +29,11 @@ namespace Harmonics.ViewModels
 
         private void DoRemoveFromChatCommand(object parameter)
         {
+            if (Application.Current.Properties["User"] is not User user || user.is_Blocked)
+            {
+                MessageBox.Show("You has been blocked");
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+            }
             var result = MessageBox.Show("Do you want to delete this user?", "Confirmation",MessageBoxButton.YesNo);
             if(result == MessageBoxResult.Yes)
             {

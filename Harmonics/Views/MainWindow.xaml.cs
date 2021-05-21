@@ -104,7 +104,6 @@ namespace Harmonics.Views
         private void MenuElement_OnMouseLeave(object sender, MouseEventArgs e)
         {
             ((StackPanel) sender).Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#0d1521"));
-            //GridCursor.Background = new SolidColorBrush(Colors.Aqua);
         }
         private void MoveCursorMenu(int index)
         {
@@ -140,12 +139,17 @@ namespace Harmonics.Views
 
         private void Logout_OnClick(object sender, RoutedEventArgs e)
         {
+            LogOut();
+        }
+
+        public void LogOut()
+        {
             Close();
             var loginWindow = new LoginWindow {Top = Top, Left = Left};
             loginWindow.Show();
         }
 
-        private void StopTablesUpdating()
+        private static void StopTablesUpdating()
         {
             BlockedUsersViewModel.StopUpdating();
             UserViewModel.StopUpdating();
