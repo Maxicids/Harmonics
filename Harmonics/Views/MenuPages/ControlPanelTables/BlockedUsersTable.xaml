@@ -3,9 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Harmonics.ViewModels"
+             xmlns:converters="clr-namespace:Harmonics.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Background="Coral">
-        
+    <UserControl.DataContext>
+        <viewModels:BlockedUsersViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <converters:IdToLoginConverter x:Key="IdToLoginConverter"/>
+        <converters:ReasonIdToStringConverter x:Key="ReasonIdToStringConverter"/>
+    </UserControl.Resources>
+    <Grid Name="MainGrid" Background="Coral">
+        <DataGrid CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
+                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding BlockedUsers, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding user_id, Converter={StaticResource IdToLoginConverter}}" Header="User" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding blocked_at}" IsReadOnly="True" Header="Blocked at"/>
+                <DataGridTextColumn Binding="{Binding reason, Converter={StaticResource ReasonIdToStringConverter}}" Header="Reason" IsReadOnly="True"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate> 
+                        <DataTemplate>
+                            <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}">
+                                <Button Command="{Binding ForgiveCommand}" CommandParameter="{Binding ElementName=IdTextBlock, Path=Text}">Forgive</Button> 
+                            </Grid> 
+                        </DataTemplate> 
+                    </DataGridTemplateColumn.CellTemplate> 
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Visibility="Hidden" DataContext="{Binding BlockedUsers}">
+            <TextBlock Name="IdTextBlock" Text="{Binding id}"></TextBlock>
+        </Grid>
     </Grid>
 </UserControl>

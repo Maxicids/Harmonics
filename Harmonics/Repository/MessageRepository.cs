@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using Harmonics.Models.Entities;
 using Harmonics.Models.Repository;
 
@@ -39,6 +40,15 @@ namespace Harmonics.Repository
             var message = messengerModel.Messages.Find(id);
             if (message != null)
                 messengerModel.Messages.Remove(message);
+        }
+        public void DeleteByChatId(int chatId)
+        {
+            var messages = messengerModel.Messages.Where(x => x.chat_id == chatId);
+            foreach (var message in messages)
+            {
+                if (message != null)
+                    messengerModel.Messages.Remove(message);
+            }
         }
     }
 }

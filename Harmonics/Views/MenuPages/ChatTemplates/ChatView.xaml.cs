@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using Harmonics.Models.UnitOfWork;
 using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
@@ -20,9 +23,23 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
             TextPanel.Width = MainGrid.ActualWidth - PhotoBorder.ActualWidth;
         }
 
-        public void SelectChat()
+        public bool SelectChat()
         {
+            var id = Convert.ToInt32(Id.Text);
+            using (var db = new UnitOfWork())
+            {
+                if (db.Chats.Get(id) == null)
+                {
+                    return false;
+                }
+            }
             Application.Current.Properties["SelectedChatId"] = Id.Text;
+            return true;
+        }
+
+        private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("dfsf");
         }
     }
 }

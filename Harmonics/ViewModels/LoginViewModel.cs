@@ -78,10 +78,6 @@ namespace Harmonics.ViewModels
             user.is_Online = true;
             unitOfWork.Users.Update(user);
             unitOfWork.Save();
-            if (user.role != 1) return true;
-            
-            Application.Current.Properties["UsersList"] = unitOfWork.Users.GetAll().ToList();
-            Application.Current.Properties["BLockedList"] = unitOfWork.Blocked.GetAll().ToList();
             return true;
         }
 

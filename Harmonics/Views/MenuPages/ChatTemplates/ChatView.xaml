@@ -29,6 +29,5 @@
                 <materialDesign:PackIcon Width="25" Height="25" Kind="Delete" Foreground="#ffc107"/>
             </Button>
         </Grid>
-        
     </Grid>
 </UserControl>

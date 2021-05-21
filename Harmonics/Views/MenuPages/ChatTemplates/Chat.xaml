@@ -11,15 +11,14 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <converters:MessageTextBoxSizeConverter x:Key="MessageTextBoxSizeConverter"/>
+        <converters:MessagesListSizeConverter x:Key="MessagesListSizeConverter"></converters:MessagesListSizeConverter>
     </UserControl.Resources>
     <UserControl.DataContext>
         <viewModels:MessagesViewModel/>
     </UserControl.DataContext>
-    <Grid Background="#17212b">
+    <Grid Name="ContainerGrid" Background="#17212b">
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
-            <ListBox x:Name="MessagesList" ItemsSource="{Binding Messages}"
-                     Grid.RowSpan="10"  
-                     ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="True"
+            <ListBox Height="{Binding ElementName=ContainerGrid, Path=ActualHeight, Converter={StaticResource MessagesListSizeConverter}}" ScrollViewer.VerticalScrollBarVisibility="Visible" x:Name="MessagesList" ItemsSource="{Binding Messages}"
                      HorizontalAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <HierarchicalDataTemplate>

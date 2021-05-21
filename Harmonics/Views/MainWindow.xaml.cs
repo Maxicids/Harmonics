@@ -117,6 +117,8 @@ namespace Harmonics.Views
             ContentGrid.Children.Clear();
             menuPage = new Chats { Height = ContentGrid.ActualHeight, Width = ContentGrid.ActualWidth };
             ContentGrid.Children.Add(menuPage);
+            StopTablesUpdating();
+
         }
 
         private void Contacts_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -125,6 +127,7 @@ namespace Harmonics.Views
             ContentGrid.Children.Clear();
             menuPage = new Settings { Height = ContentGrid.ActualHeight, Width = ContentGrid.ActualWidth };
             ContentGrid.Children.Add(menuPage);
+            StopTablesUpdating();
         }
 
         private void ControlPanel_OnMouseDown(object sender, MouseButtonEventArgs e)
@@ -140,6 +143,13 @@ namespace Harmonics.Views
             Close();
             var loginWindow = new LoginWindow {Top = Top, Left = Left};
             loginWindow.Show();
+        }
+
+        private void StopTablesUpdating()
+        {
+            BlockedUsersViewModel.StopUpdating();
+            UserViewModel.StopUpdating();
+            ReportViewModel.StopUpdating();
         }
     }
 }

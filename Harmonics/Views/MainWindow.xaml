@@ -78,7 +78,7 @@
                     </StackPanel>
                 </StackPanel>
                 </Grid>
-                <Grid  Name="ContentGrid" Width="540"
+                <Grid Name="ContentGrid" Width="540"
                             VerticalAlignment="Top" Height="100" >
                 </Grid>
             </StackPanel>

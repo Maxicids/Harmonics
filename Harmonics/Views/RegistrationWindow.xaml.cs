@@ -83,7 +83,6 @@ namespace Harmonics.Views
 
         private void Register_OnClick(object sender, MouseButtonEventArgs e)
         {
-            //Keyboard.ClearFocus();
             if (registrationViewModel.RegisterUser())
             {
                 infoLabel.Foreground = Brushes.LimeGreen;
@@ -98,6 +97,22 @@ namespace Harmonics.Views
         private void TbPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             registrationViewModel.Password = TbPassword.Password;
+        }
+
+        private void TbLogin_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetter(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TbPassword_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

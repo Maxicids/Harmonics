@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading;
 using System.Windows;
 using Harmonics.Models.Entities;
@@ -44,7 +43,7 @@ namespace Harmonics.ViewModels
                 
             }
         }
-
+        
         private void DoUpdate()
         {
             do

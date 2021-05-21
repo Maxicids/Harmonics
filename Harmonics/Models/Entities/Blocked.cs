@@ -12,8 +12,6 @@ namespace Harmonics.Models.Entities
 
         public DateTime blocked_at { get; set; }
 
-        public DateTime blocked_for { get; set; }
-
         public int? reason { get; set; }
 
         public virtual ReportContent ReportContent { get; set; }

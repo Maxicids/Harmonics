@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Input;
 using Harmonics.ViewModels;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
@@ -21,6 +21,14 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
         {
             var selectedChat = new SelectedChatView { Height = ActualHeight, Width = ActualWidth };
             (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
+        }
+
+        private void TitleTextBox_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetter(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

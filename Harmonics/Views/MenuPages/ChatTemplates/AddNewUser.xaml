@@ -16,7 +16,7 @@
                 Background="{x:Null}" BorderBrush="{x:Null}" Width="35" Click="Close_OnClick">
             <materialDesign:PackIcon Kind="CloseBold" Width="25" Height="25" Foreground="#ffc107"/>
         </Button>
-        <TextBox Text="{Binding Login}" Name="TitleTextBox" Margin="0,40,0,0" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Login"
+        <TextBox PreviewTextInput="TitleTextBox_OnPreviewTextInput" Text="{Binding Login}" Name="TitleTextBox" Margin="0,40,0,0" Width="300" Foreground="White" Height="40" materialDesign:HintAssist.Hint="Login"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
         <Button VerticalAlignment="Bottom" Command="{Binding AddCommand}">Add</Button>
         <Label x:Name="InfoLabel" Content="{Binding Info}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="0,300,0,0" FontWeight="DemiBold"/>

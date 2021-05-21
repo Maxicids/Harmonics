@@ -22,7 +22,7 @@ namespace Harmonics.ViewModels
 
         public NewChatViewModel()
         {
-            var imageUri = new Uri("../../Properties/Images/Avatar1.jpg", UriKind.Relative);//TODO: function
+            var imageUri = new Uri("../../Properties/Images/Avatar1.jpg", UriKind.Relative);
             var imageBitmap = new BitmapImage(imageUri);
             MainPicture = ImageConverter.GetBytesFromImage(imageBitmap);
             

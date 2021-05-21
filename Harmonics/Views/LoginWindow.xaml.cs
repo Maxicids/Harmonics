@@ -18,7 +18,6 @@ namespace Harmonics.Views
         {
             InitializeComponent();
             DataContext = loginViewModel;
-            //TODO: CharIndex
         }
         private void MainGrid_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
@@ -106,6 +105,22 @@ namespace Harmonics.Views
         private void TbPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
         {
             loginViewModel.Password = TbPassword.Password;
+        }
+
+        private void TbLogin_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetter(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TbPassword_OnPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -14,23 +14,27 @@
         <converters:IdToLoginConverter x:Key="IdToLoginConverter"/>
         <converters:ReasonIdToStringConverter x:Key="ReasonIdToStringConverter"/>
     </UserControl.Resources>
-    <Grid Background="PaleTurquoise" Name="MainGrid">
-        <DataGrid HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
-                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Reports}" AutoGenerateColumns="False" Name="Reports">
+    <Grid Name="MainGrid">
+        <DataGrid CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
+                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Reports, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="Reports">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding complainee, Converter={StaticResource IdToLoginConverter}}" Header="Complainee" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding sender_id, Converter={StaticResource IdToLoginConverter}}" IsReadOnly="True" Header="Sender"/>
                 <DataGridTextColumn Binding="{Binding reason, Converter={StaticResource ReasonIdToStringConverter}}" Header="Reason" IsReadOnly="True"/>
-                <DataGridCheckBoxColumn Binding="{Binding is_Approved}" Header="Approved"></DataGridCheckBoxColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate> 
                         <DataTemplate> 
-                            <Button>Approve</Button> 
+                            <Grid DataContext="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext}">
+                                <Button Command="{Binding ApproveCommand}" CommandParameter="{Binding ElementName=IdTextBlock, Path=Text}">Approve</Button> 
+                            </Grid> 
                         </DataTemplate> 
                     </DataGridTemplateColumn.CellTemplate> 
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <Grid Visibility="Hidden" DataContext="{Binding Reports}">
+            <TextBlock Name="IdTextBlock" Text="{Binding id}"></TextBlock>
+        </Grid>
     </Grid>
 </UserControl>

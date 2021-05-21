@@ -18,9 +18,17 @@ namespace Harmonics.Views.MenuPages
         }
         private void Chat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            (sender as ChatView)?.SelectChat();
-            var selectedChat = new SelectedChatView { Height = ActualHeight, Width = ActualWidth };
-            (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
+            var result = (sender as ChatView)?.SelectChat();
+            if (result == true)
+            {
+                var selectedChat = new SelectedChatView { Height = ActualHeight, Width = ActualWidth };
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(selectedChat);
+            }
+            else
+            {
+                var chats = new Chats { Height = ActualHeight, Width = ActualWidth };
+                (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(chats);
+            }
         }
 
         private void AddNewChat_OnMouseDown(object sender, MouseButtonEventArgs e)

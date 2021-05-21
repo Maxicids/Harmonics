@@ -58,7 +58,9 @@ namespace Harmonics.ViewModels
                 chatMessages =
                     new ObservableCollection<Message>
                     (
-                        unitOfWork.Messages.GetAll().Where(x => x.chat_id == Convert.ToInt32(Application.Current.Properties["SelectedChatId"])).OrderBy(x => x.sending_time)
+                        unitOfWork.Messages.GetAll().
+                            Where(x => x.chat_id == Convert.ToInt32(Application.Current.Properties["SelectedChatId"])).
+                            OrderBy(x => x.sending_time)
                     );
                 OnPropertyChanged($"");
                 Thread.Sleep(2000);

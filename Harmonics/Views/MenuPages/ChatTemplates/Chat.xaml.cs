@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Data;
 
 namespace Harmonics.Views.MenuPages.ChatTemplates
 {
@@ -7,7 +8,8 @@ namespace Harmonics.Views.MenuPages.ChatTemplates
         public Chat()
         {
             InitializeComponent();
-            //TODO: Scrollable
+            MessagesList.SelectedIndex = MessagesList.Items.Count - 1;
+            MessagesList.ScrollIntoView(MessagesList.SelectedItem) ;
         }
     }
 }

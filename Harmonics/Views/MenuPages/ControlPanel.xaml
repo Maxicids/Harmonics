@@ -17,7 +17,7 @@
                 <materialDesign:PackIcon Kind="ArrowForward" Foreground="Gray"/>
             </Button>
         </StackPanel>
-        <Grid Name="ContentGrid" Background="Aquamarine" Height="350" >
+        <Grid Name="ContentGrid" Background="Aquamarine" Height="500">
         </Grid>
         
     </StackPanel>

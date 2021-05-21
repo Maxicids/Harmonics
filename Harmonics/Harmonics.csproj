@@ -106,6 +106,7 @@
     <Compile Include="Converters\DeleteFromChatButtonConverter.cs" />
     <Compile Include="Converters\IdToLoginConverter.cs" />
     <Compile Include="Converters\MessageAlignmentConverter.cs" />
+    <Compile Include="Converters\MessagesListSizeConverter.cs" />
     <Compile Include="Converters\MessageTextBoxSizeConverter.cs" />
     <Compile Include="Converters\ParticipantsSizeConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Converters\StatusColorConverter.cs" />
     <Compile Include="Converters\UserDateConverter.cs" />
     <Compile Include="Converters\UserDescriptionConverter.cs" />
+    <Compile Include="Converters\UserIdToFontSizeConverter.cs" />
     <Compile Include="ImageProcessing\ImageConverter.cs" />
     <Compile Include="Models\Entities\Blocked.cs" />
     <Compile Include="Models\Entities\Chat.cs" />
@@ -135,13 +137,11 @@
     <Compile Include="Repository\RoleRepository.cs" />
     <Compile Include="Repository\SettingsRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="ServerProvider\MessageType.cs" />
-    <Compile Include="ServerProvider\ServerProvider.cs" />
-    <Compile Include="ServerProvider\StringProcessing\MessageConverter.cs" />
-    <Compile Include="ServerProvider\StringProcessing\PasswordHash.cs" />
+    <Compile Include="StringProcessing\PasswordHash.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />
     <Compile Include="Validation\ErrorMessages.cs" />
     <Compile Include="ViewModels\AddNewUserViewModel.cs" />
+    <Compile Include="ViewModels\BlockedUsersViewModel.cs" />
     <Compile Include="ViewModels\ChatViewModel.cs" />
     <Compile Include="ViewModels\IResizeable.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

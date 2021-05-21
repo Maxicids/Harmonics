@@ -24,10 +24,12 @@ namespace Harmonics
 
         protected override void OnExit(ExitEventArgs e)
         {
-            ParticipantViewModel.StopUpdating();
-            MessagesViewModel.StopUpdating();
-            using (var db = new UnitOfWork())
+            
+            if (Current.Properties["User"] != null)
             {
+                ParticipantViewModel.StopUpdating();
+                MessagesViewModel.StopUpdating();
+                using var db = new UnitOfWork();
                 var user = db.Users.GetByLogin(((User) Current.Properties["User"]).login);
                 user.is_Online = false;
                 db.Users.Update(user);

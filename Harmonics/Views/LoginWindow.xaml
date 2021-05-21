@@ -33,9 +33,9 @@
                           FontFamily="Calibri Bold" TextAlignment="Center" Width="300"/>
                  <Border Name="MainBorder" Background="#242f3d" Width="600" VerticalAlignment="Center" Height="170" CornerRadius="15">
                      <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical">
-                             <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Name="TbLogin" Width="500" Foreground="White" Height="40" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Username"
+                             <TextBox PreviewTextInput="TbLogin_OnPreviewTextInput" Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Name="TbLogin" Width="500" Foreground="White" Height="40" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Username"
                                       Style="{StaticResource MaterialDesignFloatingHintTextBox}"></TextBox>
-                             <PasswordBox PasswordChanged="TbPassword_OnPasswordChanged" Name="TbPassword" Width="500" Foreground="White" Height="40" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Password"
+                             <PasswordBox PreviewTextInput="TbPassword_OnPreviewTextInput" PasswordChanged="TbPassword_OnPasswordChanged" Name="TbPassword" Width="500" Foreground="White" Height="40" VerticalAlignment="Top" materialDesign:HintAssist.Hint="Password"
                                           Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
                              <TextBlock MouseDown="ToRegistration_OnMouseDown" Foreground="#ffc107" Cursor="Hand" Width="150" Margin="0,20,0,0" Background="Transparent" Text="do not have an account? click here" FontSize="10" FontFamily="Calibri Bold" TextAlignment="Center"/>
                          </StackPanel>

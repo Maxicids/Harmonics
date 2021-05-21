@@ -9,12 +9,13 @@
     <UserControl.Resources>
         <converters:MessageAlignmentConverter x:Key="MessageAlignmentConverter" />
         <converters:IdToLoginConverter x:Key="IdToLoginConverter"/>
+        <converters:UserIdToFontSizeConverter x:Key="UserIdToFontSizeConverter"/>
     </UserControl.Resources>
     <Grid Margin="0,0,16,0">
         <Border Name="MessageBorder" Height="{Binding Path=ActualHeight, ElementName=MessageStackPanel}" HorizontalAlignment="{Binding from_id, Converter={StaticResource MessageAlignmentConverter}}" CornerRadius="15" MinHeight="50" Width="150"  Background="#313234">
             <StackPanel Name="MessageStackPanel" VerticalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="5,4,0,0" FontFamily="Calibri Bold" FontSize="16" Foreground="AliceBlue"  HorizontalAlignment="Left" Text="{Binding from_id, Converter={StaticResource IdToLoginConverter}}"></TextBlock>
-                <TextBlock TextWrapping="Wrap" Margin="5,0,5,4" FontFamily="Calibri" FontSize="15" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{Binding content}"></TextBlock>
+                <TextBlock TextWrapping="Wrap" Margin="5,0,5,4" FontFamily="Calibri" FontSize="{Binding from_id, Converter={StaticResource UserIdToFontSizeConverter}}" Foreground="AliceBlue" HorizontalAlignment="Center" Text="{Binding content}"></TextBlock>
             </StackPanel>
         </Border>
     </Grid>
