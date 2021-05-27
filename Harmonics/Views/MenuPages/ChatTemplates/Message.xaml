@@ -11,7 +11,7 @@
         <converters:IdToLoginConverter x:Key="IdToLoginConverter"/>
         <converters:UserIdToFontSizeConverter x:Key="UserIdToFontSizeConverter"/>
     </UserControl.Resources>
-    <Grid Margin="0,0,16,0">
+    <Grid Margin="0,0,30,0">
         <Border Name="MessageBorder" Height="{Binding Path=ActualHeight, ElementName=MessageStackPanel}" HorizontalAlignment="{Binding from_id, Converter={StaticResource MessageAlignmentConverter}}" CornerRadius="15" MinHeight="50" Width="150"  Background="#313234">
             <StackPanel Name="MessageStackPanel" VerticalAlignment="Center" Orientation="Vertical">
                 <TextBlock Margin="5,4,0,0" FontFamily="Calibri Bold" FontSize="16" Foreground="AliceBlue"  HorizontalAlignment="Left" Text="{Binding from_id, Converter={StaticResource IdToLoginConverter}}"></TextBlock>

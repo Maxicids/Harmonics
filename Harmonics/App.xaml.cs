@@ -3,6 +3,7 @@ using System.Windows;
 using Harmonics.Models.Entities;
 using Harmonics.Models.UnitOfWork;
 using Harmonics.ViewModels;
+using Harmonics.Views;
 
 namespace Harmonics
 {
@@ -37,6 +38,21 @@ namespace Harmonics
                 Thread.Sleep(500);
             }
             base.OnExit(e);
+        }
+
+        public static void IsBlocked()
+        {
+            using var db = new UnitOfWork();
+            var user = db.Users.GetByLogin(((User) Current.Properties["User"]).login);
+            if (!user.is_Blocked) return;
+            MessageBox.Show("You has been blocked");
+            (Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+        }
+
+        public static void UnknownError()
+        {
+            MessageBox.Show("Unknown error, please try again later");
+            (Current.Properties["MainWindow"] as MainWindow)?.LogOut();
         }
     }
 }

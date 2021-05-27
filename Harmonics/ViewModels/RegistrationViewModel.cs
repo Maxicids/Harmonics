@@ -19,7 +19,7 @@ namespace Harmonics.ViewModels
             set
             {
                 login = value;
-                OnPropertyChanged("Login");
+                OnPropertyChanged($"Login");
             } 
         }
 
@@ -29,7 +29,7 @@ namespace Harmonics.ViewModels
             set
             {
                 password = value;
-                OnPropertyChanged("Password");
+                OnPropertyChanged($"Password");
             } 
         }
         public string Info
@@ -38,7 +38,7 @@ namespace Harmonics.ViewModels
             set
             {
                 info = value;
-                OnPropertyChanged("Info");
+                OnPropertyChanged($"Info");
             } 
         }
         public bool RegisterUser()
@@ -64,13 +64,19 @@ namespace Harmonics.ViewModels
                 return false;
             }
             Info = "Success";
+            var setting = new Setting
+            {
+                chat_font_size = 14,
+                theme_id = 0
+            };
+            unitOfWork.Settings.Create(setting);
             var user = new User
             {
                 login = Login,
                 password = PasswordHash.CreateHash(Password),
                 role = 2,
                 description = "",
-                settings = 1,
+                settings = setting.id,
                 profile_Picture = null,
                 is_Online = false,
                 is_Blocked = false,

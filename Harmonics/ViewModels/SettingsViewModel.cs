@@ -76,6 +76,7 @@ namespace Harmonics.ViewModels
 
         private void DoSaveCommand()
         {
+            App.IsBlocked();
             if (Description.Length > 200)
             {
                 Info = ErrorMessages.DescriptionMaxLength;

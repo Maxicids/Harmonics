@@ -30,6 +30,7 @@ namespace Harmonics.ViewModels
             
             if (report == null)
             {
+                App.UnknownError();
                 return;
             }
             unitOfWork.Blocked.Create(new Blocked

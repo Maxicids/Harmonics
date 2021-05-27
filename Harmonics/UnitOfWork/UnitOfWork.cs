@@ -30,8 +30,14 @@ namespace Harmonics.Models.UnitOfWork
             reportContentRepository ??= new ReportContentRepository(messengerModel);
         public void Save()
         {
-            //messengerModel.SaveChangesAsync();
-            messengerModel.SaveChanges();
+            try
+            {
+                messengerModel.SaveChanges();
+            }
+            catch (Exception)
+            {
+                App.UnknownError();
+            }
         }
  
         private bool disposed;

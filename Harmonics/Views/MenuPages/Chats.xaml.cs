@@ -19,11 +19,12 @@ namespace Harmonics.Views.MenuPages
         }
         private void Chat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Application.Current.Properties["User"] is not User user || user.is_Blocked)
+            if (Application.Current.Properties["User"] is not User)
             {
-                MessageBox.Show("You has been blocked");
-                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+                App.UnknownError();
+                return;
             }
+            App.IsBlocked();
             var result = (sender as ChatView)?.SelectChat();
             if (result == true)
             {
@@ -39,11 +40,12 @@ namespace Harmonics.Views.MenuPages
 
         private void AddNewChat_OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Application.Current.Properties["User"] is not User user || user.is_Blocked)
+            if (Application.Current.Properties["User"] is not User)
             {
-                MessageBox.Show("You has been blocked");
-                (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
+                App.UnknownError();
+                return;
             }
+            App.IsBlocked();
             (sender as ParticipantPreview)?.SelectUser();
             var createNewChat = new CreateNewChat { Height = ActualHeight};
             (Application.Current.Properties["MainWindow"] as MainWindow)?.ChangeContent(createNewChat);
