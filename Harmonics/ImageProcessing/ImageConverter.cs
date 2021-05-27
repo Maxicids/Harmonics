@@ -22,7 +22,6 @@ namespace Harmonics.ImageProcessing
             image.Freeze();
             return image;
         }
-
         public static byte[] GetBytesFromImage(BitmapImage image)
         {
             var encoder = new JpegBitmapEncoder();

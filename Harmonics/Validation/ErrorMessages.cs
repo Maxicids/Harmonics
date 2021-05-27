@@ -8,7 +8,9 @@
         public const string LoginIsEmpty = "Please input login";
         public const string PasswordIsEmpty = "Please input password";
         public const string LoginTooLong = "Login maximum length is 20";
+        public const string LoginTooShort = "Login minimum length is 4";
         public const string PasswordTooLong = "Password maximum length is 20";
+        public const string PasswordTooShort = "Password minimum length is 4";
         public const string LoginAndPasswordStructure = "The username and password can only consist of letters and numbers";
         public const string WrongLoginOrPassword = "Wrong login or password";
         public const string HasBeenBlocked = "This account has been blocked";

@@ -30,6 +30,9 @@ namespace Harmonics
             {
                 ParticipantViewModel.StopUpdating();
                 MessagesViewModel.StopUpdating();
+                UserViewModel.StopUpdating();
+                ReportViewModel.StopUpdating();
+                BlockedUsersViewModel.StopUpdating();
                 using var db = new UnitOfWork();
                 var user = db.Users.GetByLogin(((User) Current.Properties["User"]).login);
                 user.is_Online = false;

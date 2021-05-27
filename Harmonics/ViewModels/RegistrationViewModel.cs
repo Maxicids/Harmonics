@@ -58,10 +58,14 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.LoginAndPasswordStructure;
                 return false;
             }
-            if (Password.Length > 20)
+            switch (Password.Length)
             {
-                Info = ErrorMessages.PasswordTooLong;
-                return false;
+                case < 4:
+                    Info = ErrorMessages.PasswordTooShort;
+                    return false;
+                case > 20:
+                    Info = ErrorMessages.PasswordTooLong;
+                    return false;
             }
             Info = "Success";
             var setting = new Setting
@@ -99,9 +103,17 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.LoginIsEmpty;
                 return false;
             }
-            if (login.Length <= 20) return true;
-            Info = ErrorMessages.LoginTooLong;
-            return false;
+            switch (login.Length)
+            {
+                case <= 4:
+                    Info = ErrorMessages.LoginTooShort;
+                    return false;
+                case <= 20:
+                    return true;
+                default:
+                    Info = ErrorMessages.LoginTooLong;
+                    return false;
+            }
         }
     }
 }

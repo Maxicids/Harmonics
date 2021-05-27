@@ -87,9 +87,17 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.LoginIsEmpty;
                 return false;
             }
-            if (login.Length <= 20) return true;
-            Info = ErrorMessages.LoginTooLong;
-            return false;
+            switch (login.Length)
+            {
+                case < 4:
+                    Info = ErrorMessages.LoginTooShort;
+                    return false;
+                case < 20:
+                    return true;
+                default:
+                    Info = ErrorMessages.LoginTooLong;
+                    return false;
+            }
         }
         
     }

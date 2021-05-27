@@ -11,7 +11,7 @@
     </UserControl.DataContext>
     <Grid Name="MainGrid" Background="Black">
         <DataGrid CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
-                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="Users">
+                  Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Users, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding login}" Header="Login"/>

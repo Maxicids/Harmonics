@@ -15,7 +15,7 @@
         <converters:ReasonIdToStringConverter x:Key="ReasonIdToStringConverter"/>
     </UserControl.Resources>
     <Grid Name="MainGrid">
-        <DataGrid CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
+        <DataGrid ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.HorizontalScrollBarVisibility="Visible" CanUserAddRows="False" HorizontalScrollBarVisibility="Visible" HorizontalAlignment="Left" VerticalAlignment="Top" Height="{Binding Path=ActualWidth, ElementName=MainGrid}"
                   Width="{Binding Path=ActualWidth, ElementName=MainGrid}" ItemsSource="{Binding Reports, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Name="Reports">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding id}" Header="ID" IsReadOnly="True"/>

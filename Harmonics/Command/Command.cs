@@ -4,7 +4,7 @@ using Apex.MVVM;
 
 namespace Harmonics.Command
 {
-    public class Command : ICommand
+    public sealed class Command : ICommand
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Command"/> class.
@@ -32,8 +32,9 @@ namespace Harmonics.Command
         /// <summary>
         /// The action (or parameterized action) that will be called when the command is invoked.
         /// </summary>
-        protected Action action;
-        protected Action<object> parameterizedAction;
+        private Action action;
+
+        private Action<object> parameterizedAction;
 
         /// <summary>
         /// Bool indicating whether the command can execute.
@@ -95,8 +96,9 @@ namespace Harmonics.Command
         /// <summary>
         /// Occurs when the command executed.
         /// </summary>
-        public event CommandEventHandler Executed; 
-        protected void InvokeAction(object param)
+        public event CommandEventHandler Executed;
+
+        private void InvokeAction(object param)
         {
             Action theAction = action;
             Action<object> theParameterizedAction = parameterizedAction;
@@ -106,7 +108,7 @@ namespace Harmonics.Command
                 theParameterizedAction(param);
         }
 
-        protected void InvokeExecuted(CommandEventArgs args)
+        private void InvokeExecuted(CommandEventArgs args)
         {
             CommandEventHandler executed = Executed;
 
@@ -115,7 +117,7 @@ namespace Harmonics.Command
                 executed(this, args);
         }
 
-        protected void InvokeExecuting(CancelCommandEventArgs args)
+        private void InvokeExecuting(CancelCommandEventArgs args)
         {
             CancelCommandEventHandler executing = Executing;
 
@@ -127,7 +129,7 @@ namespace Harmonics.Command
         /// Executes the command.
         /// </summary>
         /// <param name="param">The param.</param>
-        public virtual void DoExecute(object param)
+        public void DoExecute(object param)
         {
             //  Invoke the executing command, allowing the command to be cancelled.
             CancelCommandEventArgs args = 
