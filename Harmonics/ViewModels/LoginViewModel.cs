@@ -6,7 +6,7 @@ namespace Harmonics.ViewModels
 {
     public class LoginViewModel : ViewModel
     {
-       private const string LoginAndPasswordRegex = "^[a-zA-Z0-9_.-]*$";
+        private const string LoginAndPasswordRegex = "^[a-zA-Z0-9_.-]*$";
         private string login;
         private string password;
         private string info;
@@ -66,7 +66,11 @@ namespace Harmonics.ViewModels
                 Info = ErrorMessages.WrongLoginOrPassword;
                 return false;
             }
-
+            if (user.is_Online)
+            {
+                Info = ErrorMessages.AlreadySignedIn;
+                return false;
+            }
             if (user.is_Blocked)
             {
                 Info = ErrorMessages.HasBeenBlocked;

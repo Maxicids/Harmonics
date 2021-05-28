@@ -19,7 +19,7 @@ namespace Harmonics.ViewModels
                 OnPropertyChanged($"Chats");
             }
         }
-        private Harmonics.Command.Command deleteChatCommand;
+        private readonly Harmonics.Command.Command deleteChatCommand;
         
         public Harmonics.Command.Command DeleteChatCommand => deleteChatCommand;
         private void DoDeleteChatCommand(object parameter)

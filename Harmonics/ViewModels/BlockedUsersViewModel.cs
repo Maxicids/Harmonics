@@ -11,7 +11,7 @@ namespace Harmonics.ViewModels
         private static bool isElementVisible;
         
         private ObservableCollection<Blocked> blockedUsers;
-        private Harmonics.Command.Command forgiveCommand;
+        private readonly Harmonics.Command.Command forgiveCommand;
 
         public Harmonics.Command.Command ForgiveCommand => forgiveCommand;
         public ObservableCollection<Blocked> BlockedUsers

@@ -35,18 +35,26 @@ namespace Harmonics.ViewModels
                 (Application.Current.Properties["MainWindow"] as MainWindow)?.LogOut();
             }
             var result = MessageBox.Show("Do you want to delete this user?", "Confirmation",MessageBoxButton.YesNo);
-            if(result == MessageBoxResult.Yes)
+            switch (result)
             {
-                unitOfWork.Participants.DeleteByChatAndParticipantId
+                case MessageBoxResult.Yes:
+                    unitOfWork.Participants.DeleteByChatAndParticipantId
                     (
-                    Convert.ToInt32(Application.Current.Properties["SelectedChatId"]), 
-                    Convert.ToInt32(parameter)
+                        Convert.ToInt32(Application.Current.Properties["SelectedChatId"]), 
+                        Convert.ToInt32(parameter)
                     );
-                unitOfWork.Save();
-            }
-            else if (result == MessageBoxResult.No)
-            {
-                
+                    unitOfWork.Save();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+                case MessageBoxResult.None:
+                    break;
+                case MessageBoxResult.OK:
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
         

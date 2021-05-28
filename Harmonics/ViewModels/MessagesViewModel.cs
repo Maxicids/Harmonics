@@ -14,7 +14,7 @@ namespace Harmonics.ViewModels
         
         private ObservableCollection<Message> chatMessages;
         private string message;
-        private Harmonics.Command.Command sendMessageCommand;
+        private readonly Harmonics.Command.Command sendMessageCommand;
         
         public ObservableCollection<Message> Messages
         {

@@ -14,6 +14,7 @@
         public const string LoginAndPasswordStructure = "The username and password can only consist of letters and numbers";
         public const string WrongLoginOrPassword = "Wrong login or password";
         public const string HasBeenBlocked = "This account has been blocked";
+        public const string AlreadySignedIn = "This user is already signed in";
 
         #endregion
 
